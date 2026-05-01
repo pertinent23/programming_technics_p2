@@ -1,19 +1,23 @@
 package os_p2.engine;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import com.google.common.hash.Hashing;
+import com.google.common.io.Files;
 
 import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
  * Design Pattern : Strategy (Concrete Strategy).
- * Implémentation 100% Java (Seamless Swap Fallback)[cite: 14].
+ * Implémentation 100% Java (Seamless Swap Fallback).
  */
 public class PureJavaHashEngine implements DeduplicationEngine {
 
@@ -24,20 +28,20 @@ public class PureJavaHashEngine implements DeduplicationEngine {
 
         // Récupérer tous les fichiers du VFS
         List<String> allFiles = vfs.listContent().stream()
-            .map(VirtualFileInfo::virtualPath)
-            .filter(path -> path.startsWith(rootPath))
-            .map(path -> path.substring(rootPath.length()))
+            .map(path -> Arrays.asList(path.virtualPath(), path.physicalPath()))
+            .filter(path -> path.get(0).startsWith(rootPath))
+            .map(path -> path.get(1))
             .toList();
 
         for (String path : allFiles) {
             try {
-                // On récupère le contenu via le VFS
-                // byte[] content = vfs.readAllBytes(path);
-                byte[] content = new byte[0]; // Bouchon
+                byte[] content = Files.toByteArray(
+                    new File(path)
+                );
                 
                 String hash = Hashing.sha256().hashBytes(content).toString();
                 hashToPaths.computeIfAbsent(hash, k -> new ArrayList<>()).add(path);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.err.println("Erreur de lecture VFS pour " + path);
             }
         }
@@ -61,24 +65,34 @@ public class PureJavaHashEngine implements DeduplicationEngine {
         VirtualFileInfo incoming = allFiles.stream()
             .filter(f -> f.virtualPath().equals(incomingPath))
             .findFirst().orElse(null);
-        if (incoming == null) return null;
+
+        if (incoming == null) 
+            return null;
+
         List<VirtualFileInfo> candidates = sizeGroups.getOrDefault(incoming.size(), List.of());
-        if (candidates.size() <= 1) return null;
+        
+        if (candidates.size() <= 1) 
+            return null;
 
         // 4. Calculer le hash (SHA-256) pour chaque fichier du groupe
         Map<String, List<VirtualFileInfo>> hashGroups = new HashMap<>();
         String incomingHash = null;
+
         for (VirtualFileInfo file : candidates) {
             try {
-                // byte[] content = vfs.readAllBytes(file.virtualPath());
-                byte[] content = new byte[0]; // Bouchon à remplacer par lecture réelle
+                byte[] content = Files.toByteArray(
+                    new File(file.physicalPath())
+                );
+
                 String hash = Hashing.sha256().hashBytes(content).toString();
                 hashGroups.computeIfAbsent(hash, k -> new ArrayList<>()).add(file);
+                
                 if (file.virtualPath().equals(incomingPath)) {
                     incomingHash = hash;
                 }
-            } catch (Exception e) {
-                // Ignore les erreurs de lecture
+
+            } catch (IOException e) {
+                System.err.println("Erreur de lecture VFS pour " + file.virtualPath());
             }
         }
         if (incomingHash == null) return null;
@@ -87,23 +101,33 @@ public class PureJavaHashEngine implements DeduplicationEngine {
         List<VirtualFileInfo> hashCandidates = hashGroups.getOrDefault(incomingHash, List.of());
         if (hashCandidates.size() <= 1) return null;
 
-        List<String> duplicates = new ArrayList<>();
-        byte[] incomingContent = new byte[0]; // vfs.readAllBytes(incomingPath); // Bouchon
-        for (VirtualFileInfo file : hashCandidates) {
-            try {
-                // byte[] content = vfs.readAllBytes(file.virtualPath());
-                byte[] content = new byte[0]; // Bouchon
-                if (file.virtualPath().equals(incomingPath) || java.util.Arrays.equals(content, incomingContent)) {
-                    duplicates.add(file.virtualPath());
+        try {
+            List<String> duplicates = new ArrayList<>();
+            byte[] incomingContent = Files.toByteArray(
+                new File(incomingPath)
+            );
+
+            for (VirtualFileInfo file : hashCandidates) {
+                try {
+                    byte[] content = Files.toByteArray(
+                        new File(file.physicalPath())
+                    );
+                    if (file.virtualPath().equals(incomingPath) || java.util.Arrays.equals(content, incomingContent)) {
+                        duplicates.add(file.virtualPath());
+                    }
+                } catch (IOException e) {
+                    // Ignore
                 }
-            } catch (Exception e) {
-                // Ignore
             }
+
+            // On ne retourne que s'il y a au moins 2 fichiers dans le groupe
+            if (duplicates.size() > 1) {
+                return String.join(",", duplicates);
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur de lecture VFS pour " + incomingPath);
         }
-        // On ne retourne que s'il y a au moins 2 fichiers dans le groupe
-        if (duplicates.size() > 1) {
-            return String.join(",", duplicates);
-        }
+
         return null;
     }
 }

@@ -1,3 +1,14 @@
+error id: file://<WORKSPACE>/app/src/main/java/os_p2/App.java:java/lang/String#
+file://<WORKSPACE>/app/src/main/java/os_p2/App.java
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 959
+uri: file://<WORKSPACE>/app/src/main/java/os_p2/App.java
+text:
+```scala
 package os_p2;
 
 import java.util.Collections;
@@ -23,7 +34,7 @@ public class App {
             }
 
             @Override
-            public List<VirtualFileInfo> listContent(String path, String user) {
+            public List<VirtualFileInfo> listContent(String@@ path, String user) {
                 return Collections.emptyList();
             }
         };
@@ -47,3 +58,9 @@ public class App {
         return "Bienvenue dans le projet de déduplication de fichiers !";
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

@@ -62,3 +62,13 @@ application {
 tasks.named<Test>("test") {
     useJUnitPlatform()
 }
+
+tasks.withType<JavaExec> {
+    jvmArgs("--enable-native-access=ALL-UNNAMED")
+    systemProperty("java.library.path", file("libs").absolutePath)
+}
+
+tasks.withType<Test> {
+    jvmArgs("--enable-native-access=ALL-UNNAMED")
+    systemProperty("java.library.path", file("libs").absolutePath)
+}

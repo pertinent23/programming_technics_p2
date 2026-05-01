@@ -1,6 +1,10 @@
 package os_p2.engine;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.opencv.core.Core;
@@ -10,15 +14,18 @@ import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import com.google.common.io.Files;
+
+import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
  * Design Pattern : Strategy.
- * Moteur spécialisé pour les images via OpenCV (Photography Clients)[cite: 17, 70].
+ * Moteur spécialisé pour les images via OpenCV (Photography Clients).
  */
 public class ImageSimilarityEngine implements DeduplicationEngine {
 
-    private static final double SIMILARITY_THRESHOLD = 0.90; // Exigence du brief [cite: 165]
+    private static final double SIMILARITY_THRESHOLD = 0.90; // Exigence du brief 
 
     static {
         try {
@@ -91,7 +98,70 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
 
     @Override
     public String checkDuplicate(VirtualFileSystem vfs, String incomingPath) {
-        return null;
+        try {
+            // 1. Récupérer les métadonnées du fichier entrant
+            Optional<VirtualFileInfo> incomingInfo = vfs.listContent().stream()
+                .filter(f -> f.virtualPath().equals(incomingPath))
+                .findFirst();
+            
+            if (incomingInfo.isEmpty()) {
+                return null; // Le fichier n'existe pas dans le VFS, donc pas de doublon
+            }
+
+            // 2. Prétraiter l'image entrante
+            Mat incomingImage = preprocessImage(vfs, incomingPath);
+            if (incomingImage.empty()) {
+                return null; // Impossible de décoder l'image
+            }
+
+            // 3. Récupérer tous les autres fichiers du VFS pour la comparaison
+            List<String> allPaths = vfs.listContent().stream()
+                .map(VirtualFileInfo::virtualPath)
+                .filter(path -> !path.equals(incomingPath)) // Exclure le fichier lui-même
+                .toList();
+
+            if (allPaths.isEmpty()) {
+                incomingImage.release();
+                return null; // Aucun autre fichier pour la comparaison
+            }
+
+            // 4. Comparer avec tous les autres fichiers
+            List<String> duplicates = new ArrayList<>();
+            duplicates.add(incomingPath); // Ajouter le fichier lui-même au groupe
+
+            for (String otherPath : allPaths) {
+                Mat otherImage = preprocessImage(vfs, otherPath);
+                if (otherImage.empty()) {
+                    continue; // Impossible de décoder cette image, passer à la suivante
+                }
+
+                // Calcul de la similarité par corrélation normalisée
+                Mat result = new Mat();
+                Imgproc.matchTemplate(incomingImage, otherImage, result, Imgproc.TM_CCOEFF_NORMED);
+                double similarity = Math.abs(result.get(0, 0)[0]);
+                result.release();
+                otherImage.release();
+
+                // Si la similarité est au-dessus du seuil, c'est un doublon
+                if (similarity >= SIMILARITY_THRESHOLD) {
+                    duplicates.add(otherPath);
+                }
+            }
+
+            incomingImage.release();
+
+            // 5. Retourner le groupe seulement s'il y a au moins 2 fichiers (doublons)
+            if (duplicates.size() > 1) {
+                return String.join(",", duplicates);
+            }
+
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("[ImageSimilarityEngine] ERREUR : Librairie native OpenCV introuvable.");
+        } catch (Exception e) {
+            System.err.println("[ImageSimilarityEngine] ERREUR lors de la vérification du doublon : " + e.getMessage());
+        }
+
+        return null; // Aucun doublon trouvé
     }
 
     /**
@@ -101,8 +171,17 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     @SuppressWarnings("noused") // Justification : Méthode interne, pas d'API publique à exposer
     private Mat preprocessImage(VirtualFileSystem vfs, String virtualPath) {
         try {
-            // byte[] fileBytes = vfs.readAllBytes(virtualPath); // TODO: A adapter avec ta vraie méthode VFS
-            byte[] fileBytes = new byte[0]; // Bouchon
+            Optional<VirtualFileInfo> fileInfo = vfs.listContent().stream()
+                .filter(f -> f.virtualPath().equals(virtualPath))
+                .findFirst();
+            
+                
+            if (fileInfo.isEmpty()) 
+                throw new IllegalArgumentException("Fichier non trouvé : " + virtualPath);
+
+            byte[] fileBytes = Files.toByteArray(
+                new File(fileInfo.get().physicalPath())
+            );
 
             MatOfByte matOfByte = new MatOfByte(fileBytes);
             Mat src = Imgcodecs.imdecode(matOfByte, Imgcodecs.IMREAD_COLOR);
@@ -119,8 +198,14 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
             gray.release(); 
 
             return resizedGray;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return new Mat(); // Image corrompue ou introuvable
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("[ImageSimilarityEngine] ERREUR : Librairie native introuvable.");
+            return new Mat();
+        } catch (IOException e) {
+            System.err.println("[ImageSimilarityEngine] ERREUR lors du prétraitement de l'image : " + e.getMessage());
+            return new Mat();
         }
     }
 }

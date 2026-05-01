@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Lancer l'Application (App)",
+            "request": "launch",
+            "mainClass": "os_p2.App",
+            "vmArgs": "-Djava.library.path=${workspaceFolder}/app/src/main/native"
+        }
+    ]
+}

@@ -1,7 +1,17 @@
+error id: file://<WORKSPACE>/app/src/main/java/os_p2/frontend/MyFrontendGate.java:java/util/List#
+file://<WORKSPACE>/app/src/main/java/os_p2/frontend/MyFrontendGate.java
+empty definition using pc, found symbol in pc: java/util/List#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 42
+uri: file://<WORKSPACE>/app/src/main/java/os_p2/frontend/MyFrontendGate.java
+text:
+```scala
 package os_p2.frontend;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.@@List;
 import java.util.stream.Stream;
 
 import com.google.gson.Gson;
@@ -77,19 +87,16 @@ public class MyFrontendGate implements FrontendGate {
      * Validation métier de la requête JSON.
      */
     private DedupRequestDto parseAndValidate(String jsonString) {
-        DedupRequestDto request = Objects.requireNonNull(
-            gson.fromJson(jsonString, DedupRequestDto.class), 
-            "Requête JSON vide..."
-        );
+        DedupRequestDto request = gson.fromJson(jsonString, DedupRequestDto.class);
         
+        if (request == null) {
+            throw new IllegalArgumentException("Requête JSON vide ou mal formatée.");
+        }
         if (!"scan_duplicates".equals(request.action())) {
-            throw new IllegalArgumentException("Action non supportée ou manquante. Seule 'scan_duplicates' est acceptée.");
+            throw new IllegalArgumentException("Action non supportée ou manquante.");
         }
-        if (request.scan_type() == null) {
-            throw new IllegalArgumentException("Le paramètre 'scan_type' est manquant.");
-        }
-        if (request.path() == null) {
-            throw new IllegalArgumentException("Le paramètre 'path' est manquant.");
+        if (request.scan_type() == null || request.path() == null) {
+            throw new IllegalArgumentException("Paramètres 'scan_type' ou 'path' manquants.");
         }
         
         return request;
@@ -129,3 +136,9 @@ public class MyFrontendGate implements FrontendGate {
         return gson.toJson(new DedupResponseDto("error: " + errorMessage, List.of()));
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/List#

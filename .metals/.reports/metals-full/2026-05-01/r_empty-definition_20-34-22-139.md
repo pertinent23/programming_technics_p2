@@ -1,6 +1,17 @@
+error id: file://<WORKSPACE>/app/src/main/java/os_p2/App.java:java/util/Collections#
+file://<WORKSPACE>/app/src/main/java/os_p2/App.java
+empty definition using pc, found symbol in pc: java/util/Collections#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 33
+uri: file://<WORKSPACE>/app/src/main/java/os_p2/App.java
+text:
+```scala
 package os_p2;
 
-import java.util.Collections;
+import java.util.@@Collections;
 import java.util.List;
 
 import be.uliege.info0027.deduplication.FrontendGate;
@@ -40,6 +51,7 @@ public class App {
             
         } catch (Exception e) {
             System.err.println("Le test a échoué : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -47,3 +59,9 @@ public class App {
         return "Bienvenue dans le projet de déduplication de fichiers !";
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/Collections#
