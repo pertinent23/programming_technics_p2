@@ -47,6 +47,9 @@ java {
 // Configuration pour nommer le fichier final exactement comme demandé
 tasks.named<Jar>("shadowJar") {
     archiveFileName.set("Deduplicator.jar")
+    destinationDirectory.set(rootProject.layout.projectDirectory)
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
 }
 
 // Pour que la tâche de build standard génère aussi le Shadow JAR

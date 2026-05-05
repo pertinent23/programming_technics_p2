@@ -1618,3 +1618,415 @@ AVERTISSEMENT: Unmatched cancel notification for request id 1182
 2026.05.01 21:19:37 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/app/src/main/java/os_p2/App.java. Using fallback presentation compiler.[0m
 2026.05.01 21:19:38 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/app/src/main/java/os_p2/App.java. Using fallback presentation compiler.[0m
 2026.05.01 21:19:37 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/app/src/main/java/os_p2/App.java. Using fallback presentation compiler.[0m
+2026.05.03 15:53:29 INFO  Shutting down server[0m
+2026.05.03 15:53:29 INFO  Memory monitor stopped[0m
+2026.05.03 15:53:29 INFO  shutting down Metals[0m
+2026.05.05 18:51:17 INFO  Started: Metals version 1.6.7 in folders '/home/franck/Bureau/code/java/os_p2' for client Visual Studio Code 1.118.1.[0m
+2026.05.05 18:51:17 INFO  Memory monitor started[0m
+2026.05.05 18:51:19 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.05.05 18:51:56 INFO  skipping build import with status 'Dismissed'[0m
+2026.05.05 18:52:41 INFO  skipping build import with status 'Dismissed'[0m
+2026.05.05 18:53:09 INFO  skipping build import with status 'Dismissed'[0m
+2026.05.05 19:21:47 INFO  running '/home/franck/Bureau/code/java/os_p2/gradlew --stacktrace --console=plain --init-script /tmp/metals14862050852695806033/init-script.gradle bloopInstall'[0m
+2026.05.05 19:21:48 INFO  Calculating task graph as no cached configuration is available for tasks: bloopInstall[0m
+2026.05.05 19:21:51 INFO  > Task :configureBloopInstall FAILED[0m
+2026.05.05 19:21:51 INFO  [0m
+2026.05.05 19:21:51 INFO  [Incubating] Problems report is available at: file:///home/franck/Bureau/code/java/os_p2/build/reports/problems/problems-report.html[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR FAILURE: Build completed with 2 failures.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR 1: Task failed with an exception.[0m
+2026.05.05 19:21:51 ERROR -----------[0m
+2026.05.05 19:21:51 ERROR * What went wrong:[0m
+2026.05.05 19:21:51 ERROR Execution failed for task ':configureBloopInstall'.[0m
+2026.05.05 19:21:51 ERROR > Could not resolve all dependencies for configuration ':testCompileClasspath'.[0m
+2026.05.05 19:21:51 ERROR    > Could not create task ':compileTestJava'.[0m
+2026.05.05 19:21:51 ERROR       > Execution of task ':configureBloopInstall' caused invocation of 'Task.project' by task ':compileTestJava' at execution time which is unsupported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR * Try:[0m
+2026.05.05 19:21:51 ERROR > Run with --info or --debug option to get more log output.[0m
+2026.05.05 19:21:51 ERROR > Run with --scan to get full insights from a Build Scan (powered by Develocity).[0m
+2026.05.05 19:21:51 ERROR > Get more help at https://help.gradle.org.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR * Exception is:[0m
+2026.05.05 19:21:51 ERROR org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':configureBloopInstall'.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)[0m
+2026.05.05 19:21:51 INFO  [0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)[0m
+2026.05.05 19:21:51 INFO  Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.[0m
+2026.05.05 19:21:51 INFO  [0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)[0m
+2026.05.05 19:21:51 INFO  You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 INFO  [0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 INFO  For more on this, please refer to https://docs.gradle.org/9.4.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.[0m
+2026.05.05 19:21:51 INFO  1 actionable task: 1 executed[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 INFO  Configuration cache entry discarded with 5 problems.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)[0m
+2026.05.05 19:21:51 ERROR Caused by: org.gradle.api.internal.artifacts.ivyservice.TypedResolveException: Could not resolve all dependencies for configuration ':testCompileClasspath'.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.ResolveExceptionMapper.mapFailure(ResolveExceptionMapper.java:73)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$1.call(DefaultConfiguration.java:671)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$1.call(DefaultConfiguration.java:661)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveGraphInBuildOperation(DefaultConfiguration.java:661)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.lambda$resolveExclusivelyIfRequired$5(DefaultConfiguration.java:653)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.project.DefaultProjectStateRegistry$CalculatedModelValueImpl.update(DefaultProjectStateRegistry.java:546)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveExclusivelyIfRequired(DefaultConfiguration.java:648)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveGraphIfRequired(DefaultConfiguration.java:641)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.access$900(DefaultConfiguration.java:147)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ResolverResultsResolutionResultProvider.getValue(DefaultConfiguration.java:623)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ResolverResultsResolutionResultProvider.getValue(DefaultConfiguration.java:609)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.getResolvedConfiguration(DefaultConfiguration.java:562)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultResolvableConfiguration_Decorated.getResolvedConfiguration(Unknown Source)[0m
+2026.05.05 19:21:51 ERROR 	at bloop.integrations.gradle.tasks.ConfigureBloopInstallTask.addSourceSetAsInputs(ConfigureBloopInstallTask.scala:58)[0m
+2026.05.05 19:21:51 ERROR 	at bloop.integrations.gradle.tasks.ConfigureBloopInstallTask.$anonfun$run$1(ConfigureBloopInstallTask.scala:38)[0m
+2026.05.05 19:21:51 ERROR 	at bloop.integrations.gradle.tasks.ConfigureBloopInstallTask.$anonfun$run$1$adapted(ConfigureBloopInstallTask.scala:38)[0m
+2026.05.05 19:21:51 ERROR 	at scala.collection.immutable.Set$Set2.foreach(Set.scala:181)[0m
+2026.05.05 19:21:51 ERROR 	at bloop.integrations.gradle.tasks.ConfigureBloopInstallTask.run(ConfigureBloopInstallTask.scala:38)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.Either$Right.fold(Either.java:176)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:99)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:85)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)[0m
+2026.05.05 19:21:51 ERROR 	... 30 more[0m
+2026.05.05 19:21:51 ERROR Caused by: org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreationException: Could not create task ':compileTestJava'.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer.taskCreationException(DefaultTaskContainer.java:768)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer.access$600(DefaultTaskContainer.java:75)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreatingProvider.domainObjectCreationException(DefaultTaskContainer.java:760)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultNamedDomainObjectCollection$AbstractDomainObjectCreatingProvider.tryCreate(DefaultNamedDomainObjectCollection.java:1016)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreatingProvider.access$1401(DefaultTaskContainer.java:707)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreatingProvider$1.run(DefaultTaskContainer.java:733)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreatingProvider.tryCreate(DefaultTaskContainer.java:729)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultNamedDomainObjectCollection$AbstractDomainObjectCreatingProvider.calculateOwnValue(DefaultNamedDomainObjectCollection.java:990)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.FlatMapProvider.backingProvider(FlatMapProvider.java:72)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.FlatMapProvider.getProducer(FlatMapProvider.java:82)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.TransformBackedProvider.getProducer(TransformBackedProvider.java:59)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.TransformBackedProvider.beforeRead(TransformBackedProvider.java:95)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.TransformBackedProvider.calculateOwnValue(TransformBackedProvider.java:80)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.DelegatingProviderWithValue.calculateOwnValue(DelegatingProviderWithValue.java:45)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.TransformBackedProvider.calculateOwnValue(TransformBackedProvider.java:81)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.MapCollectors$EntryWithValueFromProvider.collectEntries(MapCollectors.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.DefaultMapProperty$CollectingSupplier.lambda$calculateOwnValue$1(DefaultMapProperty.java:594)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractCollectingSupplier.calculateValue(AbstractCollectingSupplier.java:87)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.DefaultMapProperty$CollectingSupplier.calculateOwnValue(DefaultMapProperty.java:593)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractCollectingSupplier.calculateValue(AbstractCollectingSupplier.java:41)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.DefaultMapProperty.calculateValueFrom(DefaultMapProperty.java:348)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.DefaultMapProperty.calculateValueFrom(DefaultMapProperty.java:58)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractProperty.doCalculateValue(AbstractProperty.java:176)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractProperty.calculateOwnValue(AbstractProperty.java:169)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateOwnPresentValue(AbstractMinimalProvider.java:80)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.provider.AbstractMinimalProvider.get(AbstractMinimalProvider.java:100)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.attributes.DefaultMutableAttributeContainer.doRealize(DefaultMutableAttributeContainer.java:163)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.attributes.DefaultMutableAttributeContainer.asImmutable(DefaultMutableAttributeContainer.java:229)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.attributes.FreezableAttributeContainer.freeze(FreezableAttributeContainer.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.lambda$markAsObserved$12(DefaultConfiguration.java:1003)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.runActionInHierarchy(DefaultConfiguration.java:1036)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.markAsObserved(DefaultConfiguration.java:993)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.ivyservice.moduleconverter.dependencies.DefaultLocalVariantGraphResolveStateBuilder.finalize(DefaultLocalVariantGraphResolveStateBuilder.java:199)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.ivyservice.moduleconverter.dependencies.DefaultLocalVariantGraphResolveStateBuilder.createRootVariantState(DefaultLocalVariantGraphResolveStateBuilder.java:95)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.ivyservice.DefaultConfigurationResolver.asRootVariant(DefaultConfigurationResolver.java:131)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.ivyservice.DefaultConfigurationResolver.resolveGraph(DefaultConfigurationResolver.java:117)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$1.call(DefaultConfiguration.java:669)[0m
+2026.05.05 19:21:51 ERROR 	... 153 more[0m
+2026.05.05 19:21:51 ERROR Caused by: org.gradle.api.InvalidUserCodeException: Execution of task ':configureBloopInstall' caused invocation of 'Task.project' by task ':compileTestJava' at execution time which is unsupported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.configuration.problems.DefaultProblemFactory$problem$1$build$diagnostics$1.get(DefaultProblemFactory.kt:89)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.configuration.problems.DefaultProblemFactory$problem$1$build$diagnostics$1.get(DefaultProblemFactory.kt:89)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.problems.DefaultProblemDiagnosticsFactory$DefaultProblemStream.getImplicitThrowable(DefaultProblemDiagnosticsFactory.java:165)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.problems.DefaultProblemDiagnosticsFactory$DefaultProblemStream.forCurrentCaller(DefaultProblemDiagnosticsFactory.java:154)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.configuration.problems.DefaultProblemFactory$problem$1.build(DefaultProblemFactory.kt:89)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.cc.impl.initialization.DefaultConfigurationCacheProblemsListener.onTaskExecutionAccessProblem(ConfigurationCacheProblemsListener.kt:133)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.cc.impl.initialization.DefaultConfigurationCacheProblemsListener.onProjectAccess(ConfigurationCacheProblemsListener.kt:73)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.dispatch.MethodInvocation.invokeOn(MethodInvocation.java:77)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:28)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:19)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$ListenerDetails.dispatch(DefaultListenerManager.java:574)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$ListenerDetails.dispatch(DefaultListenerManager.java:544)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:84)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:70)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$EventBroadcast$ListenerDispatch.dispatch(DefaultListenerManager.java:416)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$EventBroadcast$ListenerDispatch.dispatch(DefaultListenerManager.java:401)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:44)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$EventBroadcast$ListenerDispatch.dispatch(DefaultListenerManager.java:416)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.event.DefaultListenerManager$EventBroadcast$ListenerDispatch.dispatch(DefaultListenerManager.java:401)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88)[0m
+2026.05.05 19:21:51 ERROR 	at jdk.proxy1/jdk.proxy1.$Proxy82.onProjectAccess(Unknown Source)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.cc.impl.AbstractTaskProjectAccessChecker.notifyProjectAccess(TaskExecutionAccessCheckers.kt:47)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.AbstractTask.getProject(AbstractTask.java:243)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.DefaultTask.getProject(DefaultTask.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.tasks.SourceTask.setSource(SourceTask.java:92)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.tasks.compile.JavaCompile_Decorated.setSource(Unknown Source)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.tasks.SourceTask.setSource(SourceTask.java:83)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.tasks.compile.JavaCompile_Decorated.setSource(Unknown Source)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.plugins.JavaBasePlugin.lambda$createCompileJavaTask$5(JavaBasePlugin.java:212)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultMutationGuard$1.execute(DefaultMutationGuard.java:66)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultMutationGuard$1.execute(DefaultMutationGuard.java:66)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.code.DefaultUserCodeApplicationContext$CurrentApplication$1.execute(DefaultUserCodeApplicationContext.java:124)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultCollectionCallbackActionDecorator$BuildOperationEmittingAction$1.run(DefaultCollectionCallbackActionDecorator.java:109)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultCollectionCallbackActionDecorator$BuildOperationEmittingAction.execute(DefaultCollectionCallbackActionDecorator.java:106)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.ImmutableActionSet$SetWithManyActions.execute(ImmutableActionSet.java:330)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultDomainObjectCollection.doAdd(DefaultDomainObjectCollection.java:281)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultNamedDomainObjectCollection.doAdd(DefaultNamedDomainObjectCollection.java:126)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.api.internal.DefaultNamedDomainObjectCollection$AbstractDomainObjectCreatingProvider.tryCreate(DefaultNamedDomainObjectCollection.java:1010)[0m
+2026.05.05 19:21:51 ERROR 	... 198 more[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR ==============================================================================[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR 2: Task failed with an exception.[0m
+2026.05.05 19:21:51 ERROR -----------[0m
+2026.05.05 19:21:51 ERROR * What went wrong:[0m
+2026.05.05 19:21:51 ERROR Configuration cache problems found in this build.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR 5 problems were found storing the configuration cache, 4 of which seem unique.[0m
+2026.05.05 19:21:51 ERROR - Task `:bloopInstall` of type `bloop.integrations.gradle.tasks.BloopInstallTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types[0m
+2026.05.05 19:21:51 ERROR - Task `:configureBloopInstall` of type `bloop.integrations.gradle.tasks.ConfigureBloopInstallTask`: cannot serialize object of type 'bloop.integrations.gradle.tasks.BloopInstallTask', a subtype of 'org.gradle.api.Task', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:task_access[0m
+2026.05.05 19:21:51 ERROR - Task `:configureBloopInstall` of type `bloop.integrations.gradle.tasks.ConfigureBloopInstallTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types[0m
+2026.05.05 19:21:51 ERROR - Plugin class 'org.gradle.api.plugins.JavaBasePlugin': execution of task ':configureBloopInstall' caused invocation of 'Task.project' in other task at execution time which is unsupported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:use_project_during_execution[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR See the complete report at file:///home/franck/Bureau/code/java/os_p2/build/reports/configuration-cache/6gfjtrjbeyy5w6nez7a0pq1ys/7bu91d7ow8pa0mkzg1qzxorx5/configuration-cache-report.html[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR * Try:[0m
+2026.05.05 19:21:51 ERROR > Run with --info or --debug option to get more log output.[0m
+2026.05.05 19:21:51 ERROR > Run with --scan to get full insights from a Build Scan (powered by Develocity).[0m
+2026.05.05 19:21:51 ERROR > Get more help at https://help.gradle.org.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR * Exception is:[0m
+2026.05.05 19:21:51 ERROR org.gradle.internal.cc.impl.ConfigurationCacheProblemsException: Configuration cache problems found in this build.[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR 5 problems were found storing the configuration cache, 4 of which seem unique.[0m
+2026.05.05 19:21:51 ERROR - Task `:bloopInstall` of type `bloop.integrations.gradle.tasks.BloopInstallTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types[0m
+2026.05.05 19:21:51 ERROR - Task `:configureBloopInstall` of type `bloop.integrations.gradle.tasks.ConfigureBloopInstallTask`: cannot serialize object of type 'bloop.integrations.gradle.tasks.BloopInstallTask', a subtype of 'org.gradle.api.Task', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:task_access[0m
+2026.05.05 19:21:51 ERROR - Task `:configureBloopInstall` of type `bloop.integrations.gradle.tasks.ConfigureBloopInstallTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types[0m
+2026.05.05 19:21:51 ERROR - Plugin class 'org.gradle.api.plugins.JavaBasePlugin': execution of task ':configureBloopInstall' caused invocation of 'Task.project' in other task at execution time which is unsupported with the configuration cache.[0m
+2026.05.05 19:21:51 ERROR   See https://docs.gradle.org/9.4.0/userguide/configuration_cache_requirements.html#config_cache:requirements:use_project_during_execution[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR See the complete report at file:///home/franck/Bureau/code/java/os_p2/build/reports/configuration-cache/6gfjtrjbeyy5w6nez7a0pq1ys/7bu91d7ow8pa0mkzg1qzxorx5/configuration-cache-report.html[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.cc.impl.problems.ConfigurationCacheProblems.queryFailure(ConfigurationCacheProblems.kt:329)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.cc.impl.problems.ConfigurationCacheProblems.report(ConfigurationCacheProblems.kt:360)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.reportProblems(ProblemReportingBuildActionRunner.java:66)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:57)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:83)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:135)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:54)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:101)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:126)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:101)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.runRootBuildAction(BuildTreeLifecycleBuildActionExecutor.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:74)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:65)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:61)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:61)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:275)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:273)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:265)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:106)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:94)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:73)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:67)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:45)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:57)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:64)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)[0m
+2026.05.05 19:21:51 ERROR 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR ==============================================================================[0m
+2026.05.05 19:21:51 ERROR [0m
+2026.05.05 19:21:51 ERROR BUILD FAILED in 4s[0m
+2026.05.05 19:21:51 INFO  time: ran 'gradle bloopInstall' in 4.32s[0m
+2026.05.05 19:21:51 ERROR Gradle command failed: /home/franck/Bureau/code/java/os_p2/gradlew --stacktrace --console=plain --init-script /tmp/metals14862050852695806033/init-script.gradle bloopInstall[0m

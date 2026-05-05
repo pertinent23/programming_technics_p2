@@ -11,4 +11,3 @@ plugins {
 }
 
 rootProject.name = "os_p2"
-include("app")
