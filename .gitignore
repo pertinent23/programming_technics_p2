@@ -8,3 +8,6 @@ build
 *.zip
 
 *.jar
+
+# Exception: include gradle wrapper jar
+!gradle/wrapper/gradle-wrapper.jar
