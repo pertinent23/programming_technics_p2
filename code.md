@@ -7,4 +7,7 @@ gcc -Wall -Wextra -pedantic -std=gnu11 -O3 -fPIC -shared filededup.c -o libfiled
 java -Djava.library.path=../../../libs -jar Deduplicator.jar
 zip -j submission.zip app/build/libs/Deduplicator.jar report/report.pdf app/build.gradle.kts && zip -j -r submission.zip app/src/
 
+mvn package
+mvn clean compile
+
 ```

@@ -3,11 +3,11 @@
 
 # Ignore Gradle build output directory
 build
+target
 
 
 *.zip
 
 *.jar
 
-# Exception: include gradle wrapper jar
-!gradle/wrapper/gradle-wrapper.jar
+dependency-reduced-pom.xml
