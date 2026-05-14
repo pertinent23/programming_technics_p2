@@ -1,3 +1,14 @@
+error id: file://<WORKSPACE>/src/main/java/os_p2/engine/DeduplicationEngine.java:_empty_/VirtualFileSystem#
+file://<WORKSPACE>/src/main/java/os_p2/engine/DeduplicationEngine.java
+empty definition using pc, found symbol in pc: _empty_/VirtualFileSystem#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 708
+uri: file://<WORKSPACE>/src/main/java/os_p2/engine/DeduplicationEngine.java
+text:
+```scala
 package os_p2.engine;
 
 import java.util.List;
@@ -19,7 +30,7 @@ public interface DeduplicationEngine {
      * @param user L'utilisateur cible.
      * @return Un flux (Stream) paresseux de groupes de doublons.
      */
-    Stream<List<String>> scan(VirtualFileSystem vfs, String rootPath, String user);
+    Stream<List<String>> scan(Virtua@@lFileSystem vfs, String rootPath, String user);
 
     /**
      * Anticipation pour l'équipe Storage : Vérifier un fichier à la volée lors de l'upload.
@@ -29,3 +40,9 @@ public interface DeduplicationEngine {
      */
     String checkDuplicate(VirtualFileSystem vfs, String incomingPath);
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/VirtualFileSystem#

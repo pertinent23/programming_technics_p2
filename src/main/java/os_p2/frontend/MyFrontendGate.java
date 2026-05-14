@@ -91,6 +91,9 @@ public class MyFrontendGate implements FrontendGate {
         if (request.path() == null) {
             throw new IllegalArgumentException("Le paramètre 'path' est manquant.");
         }
+        if (request.user() == null || request.user().isBlank()) {
+            throw new IllegalArgumentException("Le paramètre 'user' est manquant.");
+        }
         
         return request;
     }
@@ -101,13 +104,13 @@ public class MyFrontendGate implements FrontendGate {
      */
     private Stream<String> processRequestStream(DedupRequestDto request) {
         try {
-            System.out.println("[Frontend] Délégation du scan type '" + request.scan_type() + "' sur '" + request.path() + "'");
+            System.out.println("[Frontend] Délégation du scan type '" + request.scan_type() + "' sur '" + request.path() + "' pour '" + request.user() + "'");
             
             // Récupérer le moteur approprié (Factory Pattern)
             var engine = engineRouter.getEngine(request.scan_type());
             
             // Scanner le chemin demandé et transformer les groupes de doublons en JSON
-            return engine.scan(vfs, request.path())
+            return engine.scan(vfs, request.path(), request.user())
                 .map(filePaths -> gson.toJson(filePaths));
             
         } catch (IllegalArgumentException e) {
@@ -126,6 +129,6 @@ public class MyFrontendGate implements FrontendGate {
 
     private String sendError(String errorMessage) {
         // En cas d'erreur, on renvoie une liste vide de groupes pour respecter la structure
-        return gson.toJson(new DedupResponseDto("error: " + errorMessage, List.of()));
+        return gson.toJson(new DedupResponseDto("error", List.of()));
     }
 }

@@ -8,7 +8,6 @@ import be.uliege.info0027.deduplication.VirtualFileSystem;
 import os_p2.engine.EngineRouter;
 import os_p2.frontend.MyFrontendGate;
 import os_p2.storage.MyStorageChecker;
-import os_p2.storage.VfsIndexCache;
 
 /**
  * Design Pattern : Composition Root / Abstract Factory.
@@ -32,16 +31,14 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
         }
         this.vfs = vfs;
         
-        // 1. Initialisation des services partagés (Core)
-        VfsIndexCache indexCache = new VfsIndexCache(this.vfs);
+        // 1. Initialisation du routeur de moteurs (Factory Pattern)
         EngineRouter engineRouter = new EngineRouter();
         
-        // 2. Injection des dépendances dans le Frontend (a besoin du VFS et du routeur)
-        // Note : Assure-toi d'ajouter le constructeur MyFrontendGate(VirtualFileSystem, EngineRouter)
+        // 2. Injection des dépendances dans le Frontend (VFS + routeur)
         this.frontendGate = new MyFrontendGate(this.vfs, engineRouter); 
         
-        // 3. Injection des dépendances dans le Storage (a besoin du VFS, du Cache, et du Moteur Exact)
-        this.storageChecker = new MyStorageChecker(this.vfs, indexCache, engineRouter.getEngine("exact"));
+        // 3. Injection des dépendances dans le Storage (VFS uniquement — comparaison directe)
+        this.storageChecker = new MyStorageChecker(this.vfs);
         
         System.out.println("[Bootstrap] Architecture os_p2 initialisée avec succès.");
     }

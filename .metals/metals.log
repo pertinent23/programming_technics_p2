@@ -2030,3 +2030,64 @@ AVERTISSEMENT: Unmatched cancel notification for request id 1182
 2026.05.05 19:21:51 ERROR BUILD FAILED in 4s[0m
 2026.05.05 19:21:51 INFO  time: ran 'gradle bloopInstall' in 4.32s[0m
 2026.05.05 19:21:51 ERROR Gradle command failed: /home/franck/Bureau/code/java/os_p2/gradlew --stacktrace --console=plain --init-script /tmp/metals14862050852695806033/init-script.gradle bloopInstall[0m
+2026.05.14 14:55:18 INFO  Started: Metals version 1.6.7 in folders '/home/franck/Bureau/code/java/os_p2' for client Visual Studio Code 1.120.0.[0m
+2026.05.14 14:55:19 INFO  time: initialize in 0.37s[0m
+2026.05.14 14:55:18 INFO  Memory monitor started[0m
+2026.05.14 14:55:23 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.05.14 14:55:23 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:24 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:31 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:31 INFO  running '/home/franck/Bureau/code/java/os_p2/gradlew --stacktrace --console=plain --init-script /tmp/metals14590816964913510117/init-script.gradle bloopInstall'[0m
+2026.05.14 14:55:33 INFO  Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details[0m
+2026.05.14 14:55:38 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:40 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:40 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:55:40 INFO  Created report: Optional[file:///home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java][0m
+2026.05.14 14:55:40 INFO  empty definition using pc, found symbol in pc: _empty_/VirtualFileSystem# (full report at: "/home/franck/Bureau/code/java/os_p2/.metals/.reports/metals-full/2026-05-14/r_empty-definition_14-55-40-604.md")[0m
+2026.05.14 14:55:41 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:56:05 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.05.14 14:56:05 INFO  no build target found for /home/franck/.config/Code/User/workspaceStorage/134dcfcc0157cac3b4edbd519f5963c4/Oracle.oracle-java/userdir/var/cache/index/s147/java/15/gensrc/be/uliege/info0027/deduplication/VirtualFileSystem.java. Using fallback presentation compiler.[0m
+2026.05.14 14:56:05 WARN  no build target for: /home/franck/.config/Code/User/workspaceStorage/134dcfcc0157cac3b4edbd519f5963c4/Oracle.oracle-java/userdir/var/cache/index/s147/java/15/gensrc/be/uliege/info0027/deduplication/VirtualFileSystem.java[0m
+2026.05.14 14:56:06 INFO  no build target found for /home/franck/Bureau/code/java/os_p2/src/main/java/os_p2/engine/DeduplicationEngine.java. Using fallback presentation compiler.[0m
+2026.05.14 14:56:12 INFO  > Task :configureBloopInstall[0m
+2026.05.14 14:56:12 INFO  > Task :bloopInstall[0m
+2026.05.14 14:56:12 INFO  [0m
+2026.05.14 14:56:12 INFO  [Incubating] Problems report is available at: file:///home/franck/Bureau/code/java/os_p2/build/reports/problems/problems-report.html[0m
+2026.05.14 14:56:12 INFO  [0m
+2026.05.14 14:56:12 INFO  Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.[0m
+2026.05.14 14:56:12 INFO  [0m
+2026.05.14 14:56:12 INFO  You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.[0m
+2026.05.14 14:56:12 INFO  [0m
+2026.05.14 14:56:12 INFO  For more on this, please refer to https://docs.gradle.org/9.4.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.[0m
+2026.05.14 14:56:12 INFO  [0m
+2026.05.14 14:56:12 INFO  BUILD SUCCESSFUL in 41s[0m
+2026.05.14 14:56:12 INFO  2 actionable tasks: 2 executed[0m
+2026.05.14 14:56:12 INFO  Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.0/userguide/configuration_cache_enabling.html[0m
+2026.05.14 14:56:13 INFO  time: ran 'gradle bloopInstall' in 41s[0m
+2026.05.14 14:56:13 INFO  Attempting to connect to the build server...[0m
+2026.05.14 14:56:13 INFO  No running Bloop server found, starting one.[0m
+2026.05.14 14:56:19 INFO  Starting compilation server[0m
+2026.05.14 14:56:22 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/franck/Bureau/code/java/os_p2/.metals/bsp.trace.json or /home/franck/.cache/metals/bsp.trace.json[0m
+2026.05.14 14:56:23 INFO  time: Connected to build server in 9.81s[0m
+2026.05.14 14:56:23 INFO  Connected to Build server: Bloop v2.0.19[0m
+2026.05.14 14:56:23 INFO  time: Imported build in 0.12s[0m
+2026.05.14 14:56:25 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.05.14 14:56:29 INFO  Created report: Optional[file:///home/franck/Bureau/code/java/os_p2/jar:file:/home/franck/.sdkman/candidates/java/25-tem/lib/src.zip!/jdk.javadoc/jdk/javadoc/internal/doclets/formats/html/HtmlConfiguration.java][0m
+2026.05.14 14:56:29 INFO  Java indexer failed with and exception. (full report at: "/home/franck/Bureau/code/java/os_p2/.metals/.reports/metals-full/2026-05-14/r_failed-idex-java_14-56-29-418.md")[0m
+2026.05.14 14:56:40 INFO  time: indexed workspace in 16s[0m
+2026.05.14 14:56:44 INFO  compiling os_p2 (14 java sources)[0m
+2026.05.14 14:56:47 WARN  Unexpected javac output: WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by com.sourcegraph.shaded.com.google.protobuf.UnsafeUtil$MemoryAccessor (file:/home/franck/.cache/coursier/v1/https/repo1.maven.org/maven2/com/sourcegraph/semanticdb-javac/0.11.2/semanticdb-javac-0.11.2.jar)
+WARNING: Please consider reporting this to the maintainers of class com.sourcegraph.shaded.com.google.protobuf.UnsafeUtil$MemoryAccessor
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release.[0m
+2026.05.14 14:56:49 INFO  compiling os_p2-test (1 java source)[0m
+2026.05.14 14:56:49 INFO  time: compiled os_p2 in 4.92s[0m
+2026.05.14 14:56:50 WARN  Unexpected javac output: WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by com.sourcegraph.shaded.com.google.protobuf.UnsafeUtil$MemoryAccessor (file:/home/franck/.cache/coursier/v1/https/repo1.maven.org/maven2/com/sourcegraph/semanticdb-javac/0.11.2/semanticdb-javac-0.11.2.jar)
+WARNING: Please consider reporting this to the maintainers of class com.sourcegraph.shaded.com.google.protobuf.UnsafeUtil$MemoryAccessor
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release.[0m
+2026.05.14 14:56:50 INFO  time: compiled os_p2-test in 1.23s[0m
+2026.05.14 14:59:15 INFO  Shutting down server[0m
+2026.05.14 14:59:15 INFO  Memory monitor stopped[0m
+2026.05.14 14:59:15 INFO  shutting down Metals[0m
+2026.05.14 14:59:15 INFO  Shut down connection with build server.[0m

@@ -1,0 +1,353 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "os_p2",
+        "directory": "/home/franck/Bureau/code/java/os_p2",
+        "workspaceDir": "/home/franck/Bureau/code/java/os_p2",
+        "sources": [
+            "/home/franck/Bureau/code/java/os_p2/src/main/java"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.6-jre/4437fb72c3cc5d29554b588d9a97bea12d6a42e1/guava-33.4.6-jre.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/be.uliege.info0027/filededup-interfaces/1.0.0/e5a3ae8b1c6f3f1bc78823ea6e6330b84ee47bf1/filededup-interfaces-1.0.0.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/org.openpnp/opencv/4.7.0-0/f6963e1c8efbe4fe02ad734ef511d3680d6b2f90/opencv-4.7.0-0.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/227d4d4957ccc3dc5761bd897e3a0ee587e750a7/error_prone_annotations-2.36.0.jar",
+            "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/7399e65dd7e9ff3404f4535b2f017093bdb134c7/j2objc-annotations-3.0.0.jar"
+        ],
+        "out": "/home/franck/Bureau/code/java/os_p2/.bloop/os_p2/build",
+        "classesDir": "/home/franck/Bureau/code/java/os_p2/.bloop/os_p2/build/classes",
+        "resources": [
+            "/home/franck/Bureau/code/java/os_p2/src/main/resources"
+        ],
+        "java": {
+            "options": [
+                "-target",
+                "25",
+                "-source",
+                "25",
+                "-h",
+                "/home/franck/Bureau/code/java/os_p2/build/generated/sources/headers/java/main",
+                "-g",
+                "-sourcepath",
+                "",
+                "-proc:none",
+                "-XDuseUnsharedTable=true"
+            ]
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/home/franck/.sdkman/candidates/java/25-tem",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                "os_p2.App"
+            ],
+            "classpath": [
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.6-jre/4437fb72c3cc5d29554b588d9a97bea12d6a42e1/guava-33.4.6-jre.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/be.uliege.info0027/filededup-interfaces/1.0.0/e5a3ae8b1c6f3f1bc78823ea6e6330b84ee47bf1/filededup-interfaces-1.0.0.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/org.openpnp/opencv/4.7.0-0/f6963e1c8efbe4fe02ad734ef511d3680d6b2f90/opencv-4.7.0-0.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/227d4d4957ccc3dc5761bd897e3a0ee587e750a7/error_prone_annotations-2.36.0.jar",
+                "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/7399e65dd7e9ff3404f4535b2f017093bdb134c7/j2objc-annotations-3.0.0.jar"
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-launcher",
+                    "version": "1.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-launcher",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.12.1/9615c174aaef00ac0ea45ed0a09815e05b2f8242/junit-platform-launcher-1.12.1-sources.jar"
+                        },
+                        {
+                            "name": "junit-platform-launcher",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.12.1/ff5af5e325705fb1d5926a0235cc655c4e96bf1d/junit-platform-launcher-1.12.1.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "be.uliege.info0027",
+                    "name": "filededup-interfaces",
+                    "version": "1.0.0",
+                    "artifacts": [
+                        {
+                            "name": "filededup-interfaces",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/be.uliege.info0027/filededup-interfaces/1.0.0/e5a3ae8b1c6f3f1bc78823ea6e6330b84ee47bf1/filededup-interfaces-1.0.0.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.j2objc",
+                    "name": "j2objc-annotations",
+                    "version": "3.0.0",
+                    "artifacts": [
+                        {
+                            "name": "j2objc-annotations",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/7399e65dd7e9ff3404f4535b2f017093bdb134c7/j2objc-annotations-3.0.0.jar"
+                        },
+                        {
+                            "name": "j2objc-annotations",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/e6e870c6faf70867a723848b036607cd7d389621/j2objc-annotations-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apiguardian",
+                    "name": "apiguardian-api",
+                    "version": "1.1.2",
+                    "artifacts": [
+                        {
+                            "name": "apiguardian-api",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar"
+                        },
+                        {
+                            "name": "apiguardian-api",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/e0787a997746ac32639e0bf3cb27af8dce8a3428/apiguardian-api-1.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-commons",
+                    "version": "1.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-commons",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.12.1/d34adac31a6974eec6611cc129927a2e2cfe89ee/junit-platform-commons-1.12.1.jar"
+                        },
+                        {
+                            "name": "junit-platform-commons",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.12.1/3ed275ba1154f18e77d841ae1ce83a592579a267/junit-platform-commons-1.12.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "failureaccess",
+                    "version": "1.0.3",
+                    "artifacts": [
+                        {
+                            "name": "failureaccess",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/18ed910a9966320b5ccfdfc3dbabbd1afd3d40e0/failureaccess-1.0.3-sources.jar"
+                        },
+                        {
+                            "name": "failureaccess",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.errorprone",
+                    "name": "error_prone_annotations",
+                    "version": "2.36.0",
+                    "artifacts": [
+                        {
+                            "name": "error_prone_annotations",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/227d4d4957ccc3dc5761bd897e3a0ee587e750a7/error_prone_annotations-2.36.0.jar"
+                        },
+                        {
+                            "name": "error_prone_annotations",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/2037dc2e9c13c3be8bfc1f346a02832a77372b4a/error_prone_annotations-2.36.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openpnp",
+                    "name": "opencv",
+                    "version": "4.7.0-0",
+                    "artifacts": [
+                        {
+                            "name": "opencv",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.openpnp/opencv/4.7.0-0/60598624f51baef43620946914ee4fca364fe40c/opencv-4.7.0-0-sources.jar"
+                        },
+                        {
+                            "name": "opencv",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.openpnp/opencv/4.7.0-0/f6963e1c8efbe4fe02ad734ef511d3680d6b2f90/opencv-4.7.0-0.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-params",
+                    "version": "5.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-params",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.12.1/73f77dc960d70fcd16937198bfdda1b930bed147/junit-jupiter-params-5.12.1-sources.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-params",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.12.1/a879b3b05785b66201e30709e7c61662b269cbd1/junit-jupiter-params-5.12.1.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jspecify",
+                    "name": "jspecify",
+                    "version": "1.0.0",
+                    "artifacts": [
+                        {
+                            "name": "jspecify",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar"
+                        },
+                        {
+                            "name": "jspecify",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/f1a67bbcf2f9f282baf3821046563983f16ca9b2/jspecify-1.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "guava",
+                    "version": "33.4.6-jre",
+                    "artifacts": [
+                        {
+                            "name": "guava",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.6-jre/4437fb72c3cc5d29554b588d9a97bea12d6a42e1/guava-33.4.6-jre.jar"
+                        },
+                        {
+                            "name": "guava",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.6-jre/e328f435a7601dbe5c4f40a46ba0e3c8ca6ee92c/guava-33.4.6-jre-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-engine",
+                    "version": "1.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-engine",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.12.1/fc105f3430d6392a4d033fe6f9d58eddd1a03594/junit-platform-engine-1.12.1.jar"
+                        },
+                        {
+                            "name": "junit-platform-engine",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.12.1/ca2b7ff5842903db239d851da45cf926b94134c6/junit-platform-engine-1.12.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-engine",
+                    "version": "5.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-engine",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.12.1/fec974a323cb74d080b7801abba2e79e01cadbfe/junit-jupiter-engine-5.12.1.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-engine",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.12.1/6c29245462966b48250a7c7e1e5df2cc5cdc5f54/junit-jupiter-engine-5.12.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "listenablefuture",
+                    "version": "9999.0-empty-to-avoid-conflict-with-guava",
+                    "artifacts": [
+                        {
+                            "name": "listenablefuture",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.opentest4j",
+                    "name": "opentest4j",
+                    "version": "1.3.0",
+                    "artifacts": [
+                        {
+                            "name": "opentest4j",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar"
+                        },
+                        {
+                            "name": "opentest4j",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/afb8ff23cffb021c56f333953aebfe6e8818568e/opentest4j-1.3.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter",
+                    "version": "5.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.12.1/9c1abe3ede704e951fa5329365daa7a4cb444ed5/junit-jupiter-5.12.1-sources.jar"
+                        },
+                        {
+                            "name": "junit-jupiter",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.12.1/a0abf9f70d0b90f8e1fbf75c6c63d0a9834618e8/junit-jupiter-5.12.1.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-api",
+                    "version": "5.12.1",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-api",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.12.1/e6db7ccf02f4e2a30358a78383311fbc92b238c1/junit-jupiter-api-5.12.1-sources.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-api",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.12.1/9ed9e01546d4eb0840769b5d0ac7924531e98d7d/junit-jupiter-api-5.12.1.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.code.gson",
+                    "name": "gson",
+                    "version": "2.10.1",
+                    "artifacts": [
+                        {
+                            "name": "gson",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar"
+                        },
+                        {
+                            "name": "gson",
+                            "classifier": "sources",
+                            "path": "/home/franck/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/982a90132e942f302e6fe79d6e78c4bc2e998569/gson-2.10.1-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

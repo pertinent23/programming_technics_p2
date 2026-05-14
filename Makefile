@@ -21,7 +21,7 @@ all:
 	@echo "  make gradle   : Crée une archive propre avec GRADLE"
 	@echo "  make clean    : Nettoie les fichiers compilés et les ZIP"
 
-# 1. Sécurité : Vérifie que le rapport PDF existe [cite: 6]
+# 1. Sécurité : Vérifie que le rapport PDF existe
 check_pdf:
 	@echo "📄 [1/4] Vérification de la présence du rapport PDF..."
 	@if [ ! -f $(PDF_NAME) ]; then \
@@ -53,18 +53,18 @@ gradle: check_pdf
 	@echo "✅ [4/4] Archive $(ZIP_GRADLE) générée avec succès !"
 	@$(MAKE) test_zip_gradle
 
-# 4. Affiche un résumé du contenu de l'archive pour rassurer le développeur [cite: 10]
+# 4. Affiche un résumé du contenu de l'archive pour rassurer le développeur
 test_zip_mvn:
 	@echo "🔍 Vérification du contenu à la racine de l'archive Maven :"
 	@unzip -l $(ZIP_MAVEN) | grep -E "pom.xml|report.pdf|$(SRC_DIR)" | head -n 5
-	@echo "✨ Tout est prêt pour la soumission sur Gradescope (J6Y4N3) en version Maven !" [cite: 11]
+	@echo "✨ Tout est prêt pour la soumission sur Gradescope (J6Y4N3) en version Maven !"
 
 test_zip_gradle:
 	@echo "🔍 Vérification du contenu à la racine de l'archive Gradle :"
 	@unzip -l $(ZIP_GRADLE) | grep -E "build.gradle|report.pdf|$(SRC_DIR)" | head -n 5
-	@echo "✨ Tout est prêt pour la soumission sur Gradescope (J6Y4N3) en version Gradle !" [cite: 11]
+	@echo "✨ Tout est prêt pour la soumission sur Gradescope (J6Y4N3) en version Gradle !"
 
-# 5. Nettoyage du projet [cite: 12]
+# 5. Nettoyage du projet
 clean:
 	@echo "🧹 Nettoyage du projet..."
 	@-./gradlew clean 2>/dev/null || true
