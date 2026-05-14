@@ -13,8 +13,8 @@ import be.uliege.info0027.deduplication.VirtualFileSystem;
 import os_p2.engine.EngineRouter;
 
 /**
- * C'est la porte d'entrée de notre application pour le Frontend.
- * Elle reçoit des requêtes JSON, les valide, et renvoie les résultats du scan.
+ * Point d'entrée de l'API pour les requêtes JSON provenant du Frontend.
+ * Valide les entrées et délègue le traitement aux moteurs de déduplication appropriés.
  */
 public class MyFrontendGate implements FrontendGate {
 
@@ -22,6 +22,12 @@ public class MyFrontendGate implements FrontendGate {
     private final EngineRouter engineRouter;
     private final Gson gson;
 
+    /**
+     * Initialise la porte d'entrée avec le VFS et le routeur de moteurs.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @param engineRouter Le routeur pour sélectionner le moteur de déduplication.
+     */
     public MyFrontendGate(VirtualFileSystem vfs, EngineRouter engineRouter) {
         this.vfs = vfs;
         this.engineRouter = engineRouter;
@@ -29,7 +35,10 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Reçoit une requête JSON et renvoie tout d'un coup dans un gros string JSON.
+     * Traite une requête JSON et retourne une réponse complète formatée.
+     * 
+     * @param jsonString La requête JSON brute.
+     * @return La réponse JSON contenant les groupes de doublons ou une erreur.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -52,8 +61,10 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Pareil que accept(), mais renvoie un Stream pour traiter les données petit à petit.
-     * C'est mieux pour les performances si on a des milliers de doublons.
+     * Traite une requête JSON et retourne un flux de réponses (streaming).
+     * 
+     * @param jsonString La requête JSON brute.
+     * @return Un flux de chaînes JSON représentant chaque groupe de doublons.
      */
     @Override
     public Stream<String> acceptStream(String jsonString) {
@@ -67,7 +78,12 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Vérifie que le JSON reçu contient bien tout ce qu'il faut (action, scan_type, path, user).
+     * Analyse et valide la structure de la requête JSON entrante.
+     * 
+     * @param jsonString Le JSON brut.
+     * @return Le DTO de la requête validée.
+     * @throws IllegalArgumentException Si des paramètres obligatoires manquent ou sont invalides.
+     * @throws NullPointerException Si le JSON est vide.
      */
     private DedupRequestDto parseAndValidate(String jsonString) {
         DedupRequestDto request = Objects.requireNonNull(
@@ -92,7 +108,10 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Appelle le bon moteur de déduplication et transforme le résultat en JSON.
+     * Délègue le traitement à l'Engine approprié et formate le flux de sortie.
+     * 
+     * @param request La requête DTO validée.
+     * @return Un flux de chemins de fichiers doublons encodés en JSON.
      */
     private Stream<String> processRequestStream(DedupRequestDto request) {
         try {
@@ -110,14 +129,20 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Formate une réponse de succès.
+     * Génère un JSON de succès pour la réponse complète.
+     * 
+     * @param groups Liste des groupes de doublons.
+     * @return Chaîne JSON formatée.
      */
     private String sendSuccess(List<List<String>> groups) {
         return gson.toJson(new DedupResponseDto("success", groups));
     }
 
     /**
-     * Formate une réponse d'erreur.
+     * Génère un JSON d'erreur formaté.
+     * 
+     * @param errorMessage Le message d'erreur à inclure (optionnel dans le DTO actuel).
+     * @return Chaîne JSON d'erreur.
      */
     private String sendError(String errorMessage) {
         return gson.toJson(new DedupResponseDto("error", List.of()));

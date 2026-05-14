@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
 import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -18,8 +17,9 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * Ce moteur est spécial : il ne cherche pas les fichiers identiques au bit près,
- * mais les images qui se ressemblent visuellement grâce à OpenCV.
+ * Moteur de déduplication par similarité visuelle utilisant OpenCV.
+ * Il regroupe les images qui se ressemblent à au moins 90% via Template
+ * Matching.
  */
 public class ImageSimilarityEngine implements DeduplicationEngine {
 
@@ -34,8 +34,13 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     }
 
     /**
-     * Scanne les images d'un utilisateur et utilise "Union-Find" pour regrouper 
-     * celles qui ont une similarité de plus de 90%.
+     * Recherche des groupes d'images similaires pour un utilisateur.
+     * Utilise une structure Union-Find pour agréger les résultats de similarité.
+     * 
+     * @param vfs      Le système de fichiers virtuel.
+     * @param rootPath Le dossier virtuel à explorer.
+     * @param user     L'utilisateur cible du scan.
+     * @return Un flux de groupes de chemins virtuels d'images similaires.
      */
     @Override
     public Stream<List<String>> scan(VirtualFileSystem vfs, String rootPath, String user) {
@@ -45,7 +50,7 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
         if (n == 0) {
             return Stream.empty();
         }
-        
+
         Mat[] images = new Mat[n];
         for (int i = 0; i < n; i++) {
             images[i] = preprocessPhysicalImage(allFiles.get(i).physicalPath());
@@ -101,7 +106,11 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     }
 
     /**
-     * Vérifie si une nouvelle image ressemble à une image déjà présente sur le serveur.
+     * Vérifie si une image entrante ressemble à une image déjà stockée.
+     * 
+     * @param vfs          Le système de fichiers virtuel.
+     * @param incomingPath Le chemin physique de la nouvelle image.
+     * @return Le chemin virtuel d'une image similaire déjà présente, ou null.
      */
     @Override
     public String checkDuplicate(VirtualFileSystem vfs, String incomingPath) {
@@ -137,8 +146,10 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     }
 
     /**
-     * Prépare une image : elle est lue, passée en gris et redimensionnée en 256x256.
-     * C'est nécessaire pour pouvoir comparer les images entre elles.
+     * Prétraite une image physique (lecture, passage en gris, redimensionnement).
+     * 
+     * @param physicalPath Le chemin physique du fichier image.
+     * @return La matrice OpenCV (Mat) de l'image traitée, vide en cas d'erreur.
      */
     private Mat preprocessPhysicalImage(String physicalPath) {
         try {
@@ -147,7 +158,7 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
             }
 
             byte[] fileBytes = Files.readAllBytes(Path.of(physicalPath));
-            MatOfByte matOfByte = new MatOfByte(fileBytes);
+            org.opencv.core.MatOfByte matOfByte = new org.opencv.core.MatOfByte(fileBytes);
             Mat src = Imgcodecs.imdecode(matOfByte, Imgcodecs.IMREAD_COLOR);
             matOfByte.release();
 

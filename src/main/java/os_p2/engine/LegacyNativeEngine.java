@@ -16,8 +16,8 @@ import be.uliege.info0027.deduplication.VirtualFileSystem;
 import os_p2.native_c.filededup_h;
 
 /**
- * Ce moteur utilise la librairie C native pour aller plus vite.
- * On utilise l'API FFM (Foreign Function & Memory) pour appeler les fonctions C.
+ * Moteur de déduplication exploitant une librairie native en C.
+ * Utilise l'API Foreign Function & Memory (JDK 25) pour une interopérabilité haute performance.
  */
 public class LegacyNativeEngine implements DeduplicationEngine {
 
@@ -26,8 +26,13 @@ public class LegacyNativeEngine implements DeduplicationEngine {
     }
 
     /**
-     * On scanne les fichiers d'un utilisateur en passant par le moteur C.
-     * C'est beaucoup plus rapide pour les gros volumes de données.
+     * Effectue un scan de doublons exacts en déléguant la logique de comparaison au moteur C.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @param rootPath Le dossier virtuel de départ pour le scan.
+     * @param user L'utilisateur concerné par la recherche.
+     * @return Un flux contenant les groupes de doublons identifiés.
+     * @throws RuntimeException Si l'initialisation du moteur natif échoue.
      */
     @Override
     public Stream<List<String>> scan(VirtualFileSystem vfs, String rootPath, String user) {
@@ -95,7 +100,11 @@ public class LegacyNativeEngine implements DeduplicationEngine {
     }
 
     /**
-     * Vérifie si un fichier physique est déjà connu du moteur C.
+     * Vérifie la duplication d'un fichier physique via le moteur natif C.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @param incomingPath Le chemin physique du fichier entrant.
+     * @return Le chemin virtuel du doublon original, ou null.
      */
     @Override
     public String checkDuplicate(VirtualFileSystem vfs, String incomingPath) {

@@ -7,13 +7,17 @@ import java.security.MessageDigest;
 import java.util.HexFormat;
 
 /**
- * Cette classe gère la lecture des fichiers physiques sur le disque.
- * On utilise des buffers pour ne pas saturer la mémoire (évite les SIGKILL).
+ * Service utilitaire pour les opérations d'Entrée/Sortie sur les fichiers physiques.
+ * Optimisé pour une consommation mémoire minimale ($O(1)$) afin d'éviter les dépassements de RAM.
  */
 public class FileIO {
 
     /**
-     * Compare deux fichiers octet par octet pour être sûr qu'ils sont identiques.
+     * Compare le contenu binaire de deux fichiers physiques.
+     * 
+     * @param p1 Chemin du premier fichier.
+     * @param p2 Chemin du second fichier.
+     * @return true si les fichiers ont exactement le même contenu.
      */
     public static boolean areIdentical(Path p1, Path p2) {
         try {
@@ -38,7 +42,10 @@ public class FileIO {
     }
 
     /**
-     * Calcule l'empreinte numérique (SHA-256) d'un fichier.
+     * Calcule l'empreinte SHA-256 d'un fichier physique via un flux bufferisé.
+     * 
+     * @param path Le chemin du fichier.
+     * @return L'empreinte hexadécimale (String), ou null en cas d'erreur.
      */
     public static String calculateSha256(Path path) {
         try {

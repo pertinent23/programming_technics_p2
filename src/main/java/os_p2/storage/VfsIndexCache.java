@@ -10,8 +10,8 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * Ce cache permet de stocker les fichiers du VFS triés par taille.
- * Ça nous évite de comparer des fichiers qui n'ont pas la même taille !
+ * Cache mémoire pour indexer les fichiers du VFS par leur taille.
+ * Permet d'optimiser les recherches de doublons en filtrant les candidats par taille.
  */
 public class VfsIndexCache {
 
@@ -19,6 +19,11 @@ public class VfsIndexCache {
     
     private Map<Long, List<VirtualFileInfo>> filesBySizeIndex;
 
+    /**
+     * Initialise le cache pour un VFS donné.
+     * 
+     * @param vfs Le système de fichiers virtuel à indexer.
+     */
     public VfsIndexCache(VirtualFileSystem vfs) {
         this.vfs = vfs;
         this.filesBySizeIndex = new ConcurrentHashMap<>();
@@ -26,7 +31,7 @@ public class VfsIndexCache {
     }
 
     /**
-     * On reconstruit tout l'index en scannant le VFS.
+     * Reconstruit intégralement l'index en parcourant tout le VFS.
      */
     public synchronized void refreshIndex() {
         try {
@@ -44,14 +49,19 @@ public class VfsIndexCache {
     }
 
     /**
-     * Renvoie tous les fichiers qui font précisément cette taille-là.
+     * Récupère la liste des fichiers ayant une taille spécifique.
+     * 
+     * @param size La taille recherchée en octets.
+     * @return Une liste de fichiers candidats.
      */
     public List<VirtualFileInfo> getCandidatesBySize(long size) {
         return filesBySizeIndex.getOrDefault(size, Collections.emptyList());
     }
 
     /**
-     * Ajoute un nouveau fichier dans notre index (utile après un upload réussi).
+     * Ajoute un fichier à l'index sans reconstruire l'intégralité du cache.
+     * 
+     * @param info Les métadonnées du fichier à ajouter.
      */
     public void addToIndex(VirtualFileInfo info) {
         if (info != null) {

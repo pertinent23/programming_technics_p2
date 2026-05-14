@@ -1,13 +1,17 @@
 package os_p2.engine;
 
 /**
- * C'est ici qu'on choisit quel moteur utiliser (Exact ou Similar).
- * C'est aussi ici qu'on gère le "Seamless Swap" pour passer du C au Java si besoin.
+ * Routeur et Factory pour les moteurs de déduplication.
+ * Gère le choix entre les scans exacts et par similarité, ainsi que le mécanisme de repli.
  */
 public class EngineRouter {
 
     /**
-     * Renvoie le bon moteur selon ce que le frontend a demandé.
+     * Fournit le moteur de déduplication approprié en fonction du type de scan demandé.
+     * 
+     * @param scanType Le type de scan ("exact" ou "similar").
+     * @return Une instance de DeduplicationEngine prête à l'emploi.
+     * @throws IllegalArgumentException Si le type de scan n'est pas supporté.
      */
     public DeduplicationEngine getEngine(String scanType) {
         if ("similar".equalsIgnoreCase(scanType)) {
@@ -22,8 +26,9 @@ public class EngineRouter {
     }
 
     /**
-     * Tente d'utiliser le moteur C, mais si ça plante (librairie pas là, etc.),
-     * on bascule sur le moteur Java sans que l'utilisateur ne s'en rende compte.
+     * Tente de créer le moteur natif et bascule sur le moteur Java en cas d'indisponibilité.
+     * 
+     * @return Le meilleur moteur exact disponible (Natif ou Java).
      */
     private DeduplicationEngine getExactEngineWithSeamlessSwap() {
         try {

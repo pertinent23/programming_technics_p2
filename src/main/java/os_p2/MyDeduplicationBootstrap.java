@@ -10,8 +10,8 @@ import os_p2.frontend.MyFrontendGate;
 import os_p2.storage.MyStorageChecker;
 
 /**
- * C'est le coeur du démarrage de notre application. 
- * C'est ici qu'on branche tous les composants ensemble (Bootstrap).
+ * Point d'entrée de configuration et d'initialisation du système de déduplication.
+ * Responsable de l'instanciation et du câblage de tous les composants majeurs.
  */
 public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
 
@@ -20,7 +20,10 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
     private StorageChecker storageChecker;
 
     /**
-     * Méthode appelée par les tests pour tout mettre en route.
+     * Initialise l'architecture complète avec le VFS fourni.
+     * 
+     * @param vfs Le système de fichiers virtuel utilisé comme source de données.
+     * @throws IllegalArgumentException Si le VFS fourni est null.
      */
     @Override
     public void initialize(VirtualFileSystem vfs) {
@@ -39,7 +42,10 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
     }
 
     /**
-     * Renvoie la porte d'entrée pour le Frontend.
+     * Récupère l'implémentation de la passerelle Frontend.
+     * 
+     * @return L'instance de FrontendGate configurée.
+     * @throws IllegalStateException Si la méthode est appelée avant initialize().
      */
     @Override
     public FrontendGate getFrontendGate() {
@@ -50,7 +56,10 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
     }
 
     /**
-     * Renvoie l'outil de vérification pour le Storage.
+     * Récupère l'implémentation du vérificateur de stockage.
+     * 
+     * @return L'instance de StorageChecker configurée.
+     * @throws IllegalStateException Si la méthode est appelée avant initialize().
      */
     @Override
     public StorageChecker getStorageChecker() {

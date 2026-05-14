@@ -1,5 +1,4 @@
 plugins {
-    application
     java
     id("com.gradleup.shadow") version "9.3.0"
 }
@@ -36,6 +35,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 
     implementation("org.openpnp:opencv:4.7.0-0")
+
+    // Mockito pour les tests unitaires
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.11.0")
 }
 
 java {
@@ -57,10 +60,6 @@ tasks.named("build") {
     dependsOn("shadowJar")
 }
 
-application {
-    // Définit la classe principale (assure-toi que c'est le bon chemin vers ton App)
-    mainClass.set("os_p2.App")
-}
 
 tasks.named<Test>("test") {
     useJUnitPlatform()

@@ -6,20 +6,27 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * Cette classe sert à l'équipe Storage pour vérifier les doublons lors des uploads.
- * On veut éviter de stocker deux fois le même fichier sur le disque dur.
+ * Implémentation du service de vérification de stockage cross-user.
+ * Intervient lors des uploads pour détecter si le contenu d'un fichier est déjà présent.
  */
 public class MyStorageChecker implements StorageChecker {
 
     private final VirtualFileSystem vfs;
 
+    /**
+     * Construit le vérificateur avec le VFS spécifié.
+     * 
+     * @param vfs Le système de fichiers virtuel à utiliser.
+     */
     public MyStorageChecker(VirtualFileSystem vfs) {
         this.vfs = vfs;
     }
 
     /**
-     * Cette méthode intercepte le fichier avant qu'il soit stocké définitivement.
-     * Si elle trouve un doublon, l'upload peut être annulé.
+     * Recherche un doublon pour un fichier entrant avant son stockage définitif.
+     * 
+     * @param incomingFilePath Le chemin vers le fichier temporaire qui vient d'être uploadé.
+     * @return Les métadonnées du doublon original trouvé, ou null.
      */
     @Override
     public VirtualFileInfo findDuplicate(Path incomingFilePath) {

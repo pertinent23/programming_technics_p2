@@ -9,16 +9,20 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * C'est notre outil pour fouiller dans le VFS.
- * Comme le système de fichiers est un peu spécial, on doit parfois tester 
- * plusieurs racines ou utilisateurs pour tout trouver.
+ * Service d'exploration du Virtual File System.
+ * Fournit des méthodes pour découvrir les fichiers de manière exhaustive malgré les limitations des mocks.
  */
 public class VfsScanner {
 
     private static final String[] CANDIDATE_ROOTS = { "/", "", "*", "**" };
 
     /**
-     * Scanne tous les fichiers qui appartiennent à un utilisateur précis.
+     * Recherche tous les fichiers associés à un utilisateur spécifique sous une certaine racine.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @param rootPath Le chemin virtuel racine demandé pour le scan.
+     * @param user L'identifiant de l'utilisateur.
+     * @return Une liste de métadonnées de fichiers correspondant aux critères.
      */
     public static List<VirtualFileInfo> scanForUser(VirtualFileSystem vfs, String rootPath, String user) {
         Set<VirtualFileInfo> out = new LinkedHashSet<>();
@@ -55,7 +59,10 @@ public class VfsScanner {
     }
 
     /**
-     * Scanne absolument tout ce qu'il y a dans le VFS, peu importe l'utilisateur.
+     * Scanne l'intégralité du VFS sans filtrage par utilisateur.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @return La liste exhaustive de tous les fichiers (non-dossiers) présents.
      */
     public static List<VirtualFileInfo> scanEverything(VirtualFileSystem vfs) {
         Set<VirtualFileInfo> out = new LinkedHashSet<>();
@@ -73,7 +80,13 @@ public class VfsScanner {
     }
 
     /**
-     * Méthode récursive pour descendre dans les dossiers et collecter les fichiers.
+     * Parcourt récursivement les dossiers du VFS.
+     * 
+     * @param vfs Le système de fichiers virtuel.
+     * @param path Le chemin actuel de l'exploration.
+     * @param user L'utilisateur cible (peut être null).
+     * @param out L'ensemble des fichiers trouvés à remplir.
+     * @param visited Ensemble des clés de visite pour éviter les boucles infinies.
      */
     private static void collectRecursive(VirtualFileSystem vfs, String path, String user, Set<VirtualFileInfo> out,
             Set<String> visited) {
@@ -110,7 +123,11 @@ public class VfsScanner {
     }
 
     /**
-     * Vérifie si un chemin de fichier commence bien par le chemin racine demandé.
+     * Vérifie si un chemin virtuel appartient à une arborescence racine.
+     * 
+     * @param virtualPath Le chemin du fichier.
+     * @param rootPath Le chemin du dossier racine.
+     * @return true si le fichier est dans la racine (ou est la racine elle-même).
      */
     public static boolean matchesPath(String virtualPath, String rootPath) {
         if (virtualPath == null) {

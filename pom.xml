@@ -57,6 +57,18 @@
             <artifactId>opencv</artifactId>
             <version>4.7.0-0</version>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -88,33 +100,11 @@
                         </goals>
                         <configuration>
                             <outputFile>${project.basedir}/Deduplicator.jar</outputFile>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>os_p2.App</mainClass>
-                                </transformer>
-                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <mainClass>os_p2.App</mainClass>
-                    <arguments>
-                        <argument>--enable-native-access=ALL-UNNAMED</argument>
-                    </arguments>
-                    <systemProperties>
-                        <systemProperty>
-                            <key>java.library.path</key>
-                            <value>${project.basedir}/libs</value>
-                        </systemProperty>
-                    </systemProperties>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
