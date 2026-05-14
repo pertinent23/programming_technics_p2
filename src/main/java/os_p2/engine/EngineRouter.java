@@ -1,14 +1,13 @@
 package os_p2.engine;
 
 /**
- * Design Pattern : Factory.
- * Instancie et distribue le bon moteur en fonction de la requête (exact ou similar).
- * Implémente la logique de "Seamless Swap" demandée dans le brief (Fallback Java pur).
+ * C'est ici qu'on choisit quel moteur utiliser (Exact ou Similar).
+ * C'est aussi ici qu'on gère le "Seamless Swap" pour passer du C au Java si besoin.
  */
 public class EngineRouter {
 
     /**
-     * Fournit le moteur approprié selon le type de scan demandé par le frontend.
+     * Renvoie le bon moteur selon ce que le frontend a demandé.
      */
     public DeduplicationEngine getEngine(String scanType) {
         if ("similar".equalsIgnoreCase(scanType)) {
@@ -23,8 +22,8 @@ public class EngineRouter {
     }
 
     /**
-     * Tente de charger le moteur C optimisé. S'il échoue (problème d'OS, librairie manquante),
-     * bascule de manière transparente sur l'implémentation Java pure.
+     * Tente d'utiliser le moteur C, mais si ça plante (librairie pas là, etc.),
+     * on bascule sur le moteur Java sans que l'utilisateur ne s'en rende compte.
      */
     private DeduplicationEngine getExactEngineWithSeamlessSwap() {
         try {

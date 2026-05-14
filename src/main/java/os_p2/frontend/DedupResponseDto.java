@@ -3,10 +3,9 @@ package os_p2.frontend;
 import java.util.List;
 
 /**
- * Design Pattern : Data Transfer Object (DTO).
- * Modélise la réponse globale attendue par la méthode accept().
+ * C'est l'objet qui représente la réponse renvoyée au Frontend.
  */
 public record DedupResponseDto(
-    String status,              // "success" ou "error: [message]"
-    List<List<String>> groups   // Liste des groupes de doublons trouvés
+    String status,              // "success" ou "error"
+    List<List<String>> groups   // La liste des groupes de doublons trouvés
 ) {}

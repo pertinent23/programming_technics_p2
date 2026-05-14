@@ -1,0 +1,9 @@
+\section{Design Process and Challenges}
+The development process was iterative, starting with a basic Java hash engine and expanding to native and similarity engines.
+
+\subsection*{Major Challenges}
+\begin{itemize}
+    \item \textbf{VFS Discovery}: The provided VFS interface often behaved differently depending on the test environment. We had to implement a "Probing" strategy in \texttt{VfsScanner} to search for files under various possible root names.
+    \item \textbf{Native Library Interoperability}: Implementing the FFM API (JDK 25) for the C library was challenging due to the need for manual memory management (\texttt{Arena}) and handling C pointers (\texttt{MemorySegment}) correctly to avoid segmentation faults.
+    \item \textbf{OpenCV Memory Management}: Image processing is memory-intensive. We had to ensure that every OpenCV \texttt{Mat} object was explicitly released after use to prevent memory leaks during large batch scans.
+\end{itemize}

@@ -18,13 +18,11 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * Design Pattern : Strategy.
- * Moteur spécialisé pour la déduplication par similarité d'images via OpenCV.
- * Destiné aux Photography Clients (cf. brief section 2.3).
+ * Ce moteur est spécial : il ne cherche pas les fichiers identiques au bit près,
+ * mais les images qui se ressemblent visuellement grâce à OpenCV.
  */
 public class ImageSimilarityEngine implements DeduplicationEngine {
 
-    /** Seuil de similarité — 0.90 exigé par le brief */
     private static final double SIMILARITY_THRESHOLD = 0.90;
 
     static {
@@ -36,25 +34,27 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     }
 
     /**
-     * Scanne les images pour un utilisateur et regroupe celles similaires via Union-Find.
+     * Scanne les images d'un utilisateur et utilise "Union-Find" pour regrouper 
+     * celles qui ont une similarité de plus de 90%.
      */
     @Override
     public Stream<List<String>> scan(VirtualFileSystem vfs, String rootPath, String user) {
-        // Réutilise la méthode partagée de PureJavaHashEngine
-        List<VirtualFileInfo> allFiles = PureJavaHashEngine.getFilesForUser(vfs, rootPath, user);
+        List<VirtualFileInfo> allFiles = os_p2.utils.VfsScanner.scanForUser(vfs, rootPath, user);
 
         int n = allFiles.size();
-        if (n == 0) return Stream.empty();
-
-        // Prétraiter toutes les images (grayscale + resize 256×256)
+        if (n == 0) {
+            return Stream.empty();
+        }
+        
         Mat[] images = new Mat[n];
         for (int i = 0; i < n; i++) {
             images[i] = preprocessPhysicalImage(allFiles.get(i).physicalPath());
         }
 
-        // Union-Find pour regrouper les images similaires
         int[] parent = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = i;
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
 
         java.util.function.IntUnaryOperator find = new java.util.function.IntUnaryOperator() {
             @Override
@@ -65,30 +65,34 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
 
         java.util.function.BiConsumer<Integer, Integer> union = (a, b) -> {
             int ra = find.applyAsInt(a), rb = find.applyAsInt(b);
-            if (ra != rb) parent[rb] = ra;
+            if (ra != rb) {
+                parent[rb] = ra;
+            }
         };
 
-        // Comparaison N×N (skip si image vide/corrompue)
         for (int i = 0; i < n; i++) {
-            if (images[i].empty()) continue;
+            if (images[i].empty()) {
+                continue;
+            }
             for (int j = i + 1; j < n; j++) {
-                if (images[j].empty()) continue;
-                Mat result = new Mat();
-                Imgproc.matchTemplate(images[i], images[j], result, Imgproc.TM_CCOEFF_NORMED);
-                double sim = Math.abs(result.get(0, 0)[0]);
-                result.release();
+                if (images[j].empty()) {
+                    continue;
+                }
+                Mat res = new Mat();
+                Imgproc.matchTemplate(images[i], images[j], res, Imgproc.TM_CCOEFF_NORMED);
+                double sim = Math.abs(res.get(0, 0)[0]);
+                res.release();
                 if (sim >= SIMILARITY_THRESHOLD) {
                     union.accept(i, j);
                 }
             }
         }
 
-        // Regrouper les chemins virtuels par racine Union-Find
         Map<Integer, List<String>> groups = new HashMap<>();
         for (int i = 0; i < n; i++) {
             if (!images[i].empty()) {
                 int root = find.applyAsInt(i);
-                groups.computeIfAbsent(root, _ -> new ArrayList<>()).add(allFiles.get(i).virtualPath());
+                groups.computeIfAbsent(root, r -> new ArrayList<>()).add(allFiles.get(i).virtualPath());
             }
             images[i].release();
         }
@@ -97,57 +101,59 @@ public class ImageSimilarityEngine implements DeduplicationEngine {
     }
 
     /**
-     * Vérifie si un fichier physique entrant est similaire à un fichier du VFS.
+     * Vérifie si une nouvelle image ressemble à une image déjà présente sur le serveur.
      */
     @Override
     public String checkDuplicate(VirtualFileSystem vfs, String incomingPath) {
-        try {
-            if (!Files.isRegularFile(Path.of(incomingPath))) return null;
-
-            Mat incomingImage = preprocessPhysicalImage(incomingPath);
-            if (incomingImage.empty()) return null;
-
-            for (VirtualFileInfo info : vfs.listContent()) {
-                if (Boolean.TRUE.equals(info.isDirectory())) continue;
-                if (info.physicalPath() == null) continue;
-
-                Mat otherImage = preprocessPhysicalImage(info.physicalPath());
-                if (otherImage.empty()) continue;
-
-                Mat result = new Mat();
-                Imgproc.matchTemplate(incomingImage, otherImage, result, Imgproc.TM_CCOEFF_NORMED);
-                double similarity = Math.abs(result.get(0, 0)[0]);
-                result.release();
-                otherImage.release();
-
-                if (similarity >= SIMILARITY_THRESHOLD) {
-                    incomingImage.release();
-                    return info.virtualPath();
-                }
-            }
-            incomingImage.release();
-
-        } catch (Exception e) {
-            System.err.println("[ImageSimilarityEngine] ERREUR : " + e.getMessage());
+        Mat incomingImage = preprocessPhysicalImage(incomingPath);
+        if (incomingImage.empty()) {
+            return null;
         }
+
+        for (VirtualFileInfo info : os_p2.utils.VfsScanner.scanEverything(vfs)) {
+            String physPath = info.physicalPath();
+            if (physPath == null) {
+                continue;
+            }
+
+            Mat otherImage = preprocessPhysicalImage(physPath);
+            if (otherImage.empty()) {
+                continue;
+            }
+
+            Mat res = new Mat();
+            Imgproc.matchTemplate(incomingImage, otherImage, res, Imgproc.TM_CCOEFF_NORMED);
+            double sim = Math.abs(res.get(0, 0)[0]);
+            res.release();
+            otherImage.release();
+
+            if (sim >= SIMILARITY_THRESHOLD) {
+                incomingImage.release();
+                return info.virtualPath();
+            }
+        }
+        incomingImage.release();
         return null;
     }
 
-    // ─── Utilitaires ───────────────────────────────────────────────────────
-
     /**
-     * Lit les bytes depuis le chemin physique et les décode en grayscale 256×256.
+     * Prépare une image : elle est lue, passée en gris et redimensionnée en 256x256.
+     * C'est nécessaire pour pouvoir comparer les images entre elles.
      */
     private Mat preprocessPhysicalImage(String physicalPath) {
         try {
-            if (physicalPath == null) return new Mat();
+            if (physicalPath == null) {
+                return new Mat();
+            }
 
             byte[] fileBytes = Files.readAllBytes(Path.of(physicalPath));
             MatOfByte matOfByte = new MatOfByte(fileBytes);
             Mat src = Imgcodecs.imdecode(matOfByte, Imgcodecs.IMREAD_COLOR);
             matOfByte.release();
 
-            if (src.empty()) return src;
+            if (src.empty()) {
+                return src;
+            }
 
             Mat gray = new Mat();
             Imgproc.cvtColor(src, gray, Imgproc.COLOR_BGR2GRAY);

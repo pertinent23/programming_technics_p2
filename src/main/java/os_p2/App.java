@@ -7,18 +7,18 @@ import be.uliege.info0027.deduplication.FrontendGate;
 import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
+/**
+ * Petite classe pour lancer l'appli manuellement et voir si tout compile et s'initialise bien.
+ */
 public class App {
     public static void main(String[] args) {
         System.out.println("Démarrage du test manuel de l'application...");
 
         MyDeduplicationBootstrap bootstrap = new MyDeduplicationBootstrap();
         
-        // CORRECTION : Le bootstrap refuse désormais un VFS "null" (par sécurité).
-        // Nous créons donc un faux VFS (Mock) "à la volée" pour que le test passe.
         VirtualFileSystem mockVfs = new VirtualFileSystem() {
             @Override
             public List<VirtualFileInfo> listContent() {
-                // Simule un VFS vide
                 return Collections.emptyList();
             }
 
@@ -29,10 +29,8 @@ public class App {
         };
         
         try {
-            // 1. Initialisation avec notre faux disque dur
             bootstrap.initialize(mockVfs); 
             
-            // 2. Récupération des portes
             FrontendGate gate = bootstrap.getFrontendGate();
             
             System.out.println("Le FrontendGate a bien été créé : " + (gate != null));

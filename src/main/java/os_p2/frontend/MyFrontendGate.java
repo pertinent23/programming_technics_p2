@@ -13,11 +13,8 @@ import be.uliege.info0027.deduplication.VirtualFileSystem;
 import os_p2.engine.EngineRouter;
 
 /**
- * Implémentation du point d'entrée API (Design Pattern : Facade / Front Controller).
- * Responsabilités :
- * 1. Désérialisation et validation stricte des requêtes entrantes.
- * 2. Délégation du traitement au domaine métier (via Streams pour la performance).
- * 3. Formatage de la réponse selon le standard imposé par l'équipe Frontend.
+ * C'est la porte d'entrée de notre application pour le Frontend.
+ * Elle reçoit des requêtes JSON, les valide, et renvoie les résultats du scan.
  */
 public class MyFrontendGate implements FrontendGate {
 
@@ -28,13 +25,11 @@ public class MyFrontendGate implements FrontendGate {
     public MyFrontendGate(VirtualFileSystem vfs, EngineRouter engineRouter) {
         this.vfs = vfs;
         this.engineRouter = engineRouter;
-        // On désactive l'échappement HTML pour garder des chemins propres (ex: évite les \u0026)
         this.gson = new GsonBuilder().disableHtmlEscaping().create();
     }
 
     /**
-     * Traite la requête et renvoie la réponse complète d'un coup.
-     * Réutilise intelligemment la logique de streaming pour éviter la duplication de code.
+     * Reçoit une requête JSON et renvoie tout d'un coup dans un gros string JSON.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -42,7 +37,6 @@ public class MyFrontendGate implements FrontendGate {
         try {
             DedupRequestDto request = parseAndValidate(jsonString);
 
-            // On consomme le stream et on l'agrège en une liste finale
             List<List<String>> allGroups = processRequestStream(request)
                 .map(jsonArray -> gson.fromJson(jsonArray, List.class))
                 .map(list -> (List<String>) list)
@@ -58,8 +52,8 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Traite la requête de manière paresseuse (Lazy Evaluation).
-     * Indispensable pour ne pas faire exploser la RAM si l'espace de stockage est immense.
+     * Pareil que accept(), mais renvoie un Stream pour traiter les données petit à petit.
+     * C'est mieux pour les performances si on a des milliers de doublons.
      */
     @Override
     public Stream<String> acceptStream(String jsonString) {
@@ -68,13 +62,12 @@ public class MyFrontendGate implements FrontendGate {
             return processRequestStream(request);
             
         } catch (IllegalArgumentException | JsonSyntaxException e) {
-            // En streaming, si une erreur survient au lancement, on renvoie un objet JSON d'erreur formaté.
             return Stream.of(sendError(e.getMessage()));
         }
     }
 
     /**
-     * Validation métier de la requête JSON.
+     * Vérifie que le JSON reçu contient bien tout ce qu'il faut (action, scan_type, path, user).
      */
     private DedupRequestDto parseAndValidate(String jsonString) {
         DedupRequestDto request = Objects.requireNonNull(
@@ -99,36 +92,34 @@ public class MyFrontendGate implements FrontendGate {
     }
 
     /**
-     * Méthode interne générant le flux de données. 
-     * Délègue au moteur de déduplication approprié via la Factory (EngineRouter).
+     * Appelle le bon moteur de déduplication et transforme le résultat en JSON.
      */
     private Stream<String> processRequestStream(DedupRequestDto request) {
         try {
             System.out.println("[Frontend] Délégation du scan type '" + request.scan_type() + "' sur '" + request.path() + "' pour '" + request.user() + "'");
             
-            // Récupérer le moteur approprié (Factory Pattern)
             var engine = engineRouter.getEngine(request.scan_type());
             
-            // Scanner le chemin demandé et transformer les groupes de doublons en JSON
             return engine.scan(vfs, request.path(), request.user())
                 .map(filePaths -> gson.toJson(filePaths));
             
         } catch (IllegalArgumentException e) {
-            // Le moteur n'a pas pu être trouvé pour ce type de scan
             System.err.println("[Frontend] Erreur : " + e.getMessage());
             return Stream.empty();
         }
     }
 
     /**
-     * Utilitaires de formatage des réponses JSON
+     * Formate une réponse de succès.
      */
     private String sendSuccess(List<List<String>> groups) {
         return gson.toJson(new DedupResponseDto("success", groups));
     }
 
+    /**
+     * Formate une réponse d'erreur.
+     */
     private String sendError(String errorMessage) {
-        // En cas d'erreur, on renvoie une liste vide de groupes pour respecter la structure
         return gson.toJson(new DedupResponseDto("error", List.of()));
     }
 }

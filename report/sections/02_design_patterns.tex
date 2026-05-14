@@ -1,0 +1,10 @@
+\section{Software Design Patterns}
+To ensure the system's maintainability and scalability, several design patterns were implemented:
+
+\begin{enumerate}
+    \item \textbf{Strategy Pattern}: The \texttt{DeduplicationEngine} interface allows us to swap detection algorithms at runtime without changing the frontend logic. This was crucial for supporting both "exact" and "similar" scan types.
+    \item \textbf{Factory Pattern}: The \texttt{EngineRouter} acts as a factory, instantiating the correct engine based on the \texttt{scan\_type} requested by the user. It also handles the "Seamless Swap" fallback mechanism.
+    \item \textbf{Facade Pattern}: \texttt{MyFrontendGate} provides a simplified interface to the complex underlying scanning logic. It handles the mapping between JSON DTOs and business objects.
+    \item \textbf{Repository / Cache Pattern}: \texttt{VfsIndexCache} maintains an in-memory index of files grouped by size. This optimizes the \texttt{StorageChecker}'s performance by avoiding expensive hachage for files of different sizes.
+    \item \textbf{Composition Root}: \texttt{MyDeduplicationBootstrap} is the central place where all objects are instantiated and wired together, centralizing dependency management.
+\end{enumerate}

@@ -10,10 +10,8 @@ import os_p2.frontend.MyFrontendGate;
 import os_p2.storage.MyStorageChecker;
 
 /**
- * Design Pattern : Composition Root / Abstract Factory.
- * Point d'entrée principal exigé par le système de test automatisé.
- * Responsabilité : Instancier, configurer et lier tous les composants 
- * de l'architecture (Injection de Dépendances manuelle).
+ * C'est le coeur du démarrage de notre application. 
+ * C'est ici qu'on branche tous les composants ensemble (Bootstrap).
  */
 public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
 
@@ -22,7 +20,7 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
     private StorageChecker storageChecker;
 
     /**
-     * Méthode appelée en premier par le système de test de l'université.
+     * Méthode appelée par les tests pour tout mettre en route.
      */
     @Override
     public void initialize(VirtualFileSystem vfs) {
@@ -31,18 +29,18 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
         }
         this.vfs = vfs;
         
-        // 1. Initialisation du routeur de moteurs (Factory Pattern)
         EngineRouter engineRouter = new EngineRouter();
         
-        // 2. Injection des dépendances dans le Frontend (VFS + routeur)
         this.frontendGate = new MyFrontendGate(this.vfs, engineRouter); 
         
-        // 3. Injection des dépendances dans le Storage (VFS uniquement — comparaison directe)
         this.storageChecker = new MyStorageChecker(this.vfs);
         
         System.out.println("[Bootstrap] Architecture os_p2 initialisée avec succès.");
     }
 
+    /**
+     * Renvoie la porte d'entrée pour le Frontend.
+     */
     @Override
     public FrontendGate getFrontendGate() {
         if (this.frontendGate == null) {
@@ -51,6 +49,9 @@ public class MyDeduplicationBootstrap implements FileDeduplicationBootstrap {
         return this.frontendGate;
     }
 
+    /**
+     * Renvoie l'outil de vérification pour le Storage.
+     */
     @Override
     public StorageChecker getStorageChecker() {
         if (this.storageChecker == null) {

@@ -1,120 +1,38 @@
 \documentclass[11pt,a4paper]{article}
-
-% --- Packages ---
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{tabularx}
-\usepackage{float}
+\usepackage{geometry}
 \usepackage{titlesec}
-\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
 
-% --- Formatting ---
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-}
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\geometry{margin=2.5cm}
+
+\title{INFO0027: File Deduplication Service \\ Technical Report}
+\author{Franck Duval Heuba (s227629) \& Mawamba Danielle (s218277)}
+\date{\today}
 
 \begin{document}
 
-% --- Title Page ---
-\begin{titlepage}
-    \centering
-    \vspace*{4cm}
-    {\Huge \bfseries INFO0027: File Deduplication Service\par}
-    \vspace{1.5cm}
-    {\Large Final Architecture \& Design Report\par}
-    \vspace{2cm}
-    {\large \textbf{Group Members:}\\
-    Franck Duval HEUBA \\
-    Mawa \par}
-    \vspace{2cm}
-    {\large Deadline: 2026-05-15\par}
-    \vfill
-    {\large University of Liège\par}
-\end{titlepage}
+\maketitle
+
+\section*{Abstract}
+This report details the design and implementation of a file deduplication service developed for the INFO0027 course. The system aims to optimize storage costs by detecting identical and similar files within a Virtual File System (VFS). We propose a modular architecture using several design patterns to ensure flexibility, maintainability, and seamless integration with existing C libraries and frontend requirements.
+
+\input{sections/01_architecture.tex}
+\input{sections/02_design_patterns.tex}
+\input{sections/03_quality_assurance.tex}
+\input{sections/04_process_challenges.tex}
+\input{sections/05_limitations.tex}
+\input{sections/06_ai_declaration.tex}
 
 \newpage
-
-% --- Generative AI Declaration ---
-\section*{Declaration on Generative AI}
-During the preparation of this work, the authors used Gemini 1.5 Pro to: Brainstorm software architecture design, format the JSON Data Transfer Objects, provide guidance on Project Panama (FFM API) for native C interoperability, and structure this LaTeX report. After using these tools/services, the authors reviewed, heavily refactored, and edited the content to fit the specific constraints of the VirtualFileSystem environment and take full responsibility for the publication's content.
-
-\tableofcontents
-\newpage
-
-% --- 1. Architecture and Main Components ---
-\section{Architecture and Main Components}
-The deduplication service was designed with high cohesion and loose coupling to accommodate the diverging needs of the Frontend, Storage, and Photography teams. The core architecture relies on an abstraction layer separating the domain logic from the specific algorithms.
-
-The system is bootstrapped via the \texttt{MyDeduplicationBootstrap} class, which acts as a Composition Root, instantiating and linking the following core components:
-\begin{itemize}
-    \item \textbf{FrontendGate (\texttt{MyFrontendGate}):} Acts as the API facade for frontend JSON requests. It safely parses incoming inputs using DTOs and delegates the processing to the underlying engines, returning lazy streams to maintain low memory footprints.
-    \item \textbf{StorageChecker (\texttt{MyStorageChecker}):} Intercepts file uploads on-the-fly. It optimizes the $O(N)$ comparison complexity down to $O(1)$ by using a size-based heuristic index (\texttt{VfsIndexCache}) before delegating deep content checks to the exact match engine.
-    \item \textbf{EngineRouter:} A central dispatcher that analyzes incoming requests (e.g., "exact" vs "similar") and provides the appropriate deduplication strategy while managing the "Seamless Swap" mechanism.
-\end{itemize}
-
-\textit{Note: Please refer to the Annex for the complete UML Class Diagram.}
-
-% --- 2. Software Patterns ---
-\section{Software Patterns}
-The solution heavily leverages established design patterns to ensure maintainability and flexibility without introducing unnecessary complexity.
-
-\subsection{Strategy Pattern}
-\textbf{Rationale:} The system requires three interchangeable deduplication engines (Pure Java, Native C, and OpenCV Similarity). \\
-\textbf{Implementation:} All engines implement the \texttt{DeduplicationEngine} interface. This completely decouples the \texttt{FrontendGate} and \texttt{StorageChecker} from the algorithmic complexity. \\
-\textbf{Trade-offs:} Introduces slightly more boilerplate code (interfaces and multiple classes) but guarantees that modifying the C-interop logic will never break the OpenCV logic.
-
-\subsection{Factory / Fallback Pattern}
-\textbf{Rationale:} The "Seamless Swap" requirement dictates that if the highly optimized C library fails to load (due to OS incompatibility or missing \texttt{.so} files), the system must fallback to Pure Java. \\
-\textbf{Implementation:} The \texttt{EngineRouter} acts as a Factory. It captures \texttt{UnsatisfiedLinkError} during the instantiation of the Native C engine and transparently returns the \texttt{PureJavaHashEngine} instead.
-
-\subsection{Data Transfer Object (DTO)}
-\textbf{Rationale:} The frontend communicates strictly via JSON encoded strings. \\
-\textbf{Implementation:} Java \texttt{Record}s (\texttt{DedupRequestDto}, \texttt{DedupResponseDto}) were used to model the JSON structure. Records provide inherent immutability and thread-safety, making them ideal for the asynchronous streams required by the \texttt{acceptStream} method.
-
-% --- 3. Quality Assurance & Test Plan ---
-\section{Quality Assurance and Test Plan}
-Quality assurance was driven by the ISO/IEC 25010:2024 Product Quality Model. We focused on three main characteristics critical to a core infrastructure service:
-
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{|l|l|X|}
-        \hline
-        \textbf{Main Characteristic} & \textbf{Sub-characteristic} & \textbf{Application \& Tracking} \\ \hline
-        \textbf{Performance Efficiency} & Time Behavior & Tracked via the \texttt{VfsIndexCache}. By filtering files by exact byte size before cryptographic hashing, we drastically reduced CPU cycles during storage checks. \\ \hline
-        \textbf{Reliability} & Fault Tolerance & The "Seamless Swap" mechanism ensures the application remains fully operational (falling back to Java SHA-256) even if native FFM API calls fail. \\ \hline
-        \textbf{Maintainability} & Modularity & Assessed through strict adherence to the VirtualFileSystem (VFS) interface. No hardcoded \texttt{java.io.File} operations exist in the core engines, allowing future migration to cloud storage. \\ \hline
-    \end{tabularx}
-    \caption{ISO/IEC 25010 Quality Characteristics applied to the project.}
-\end{table}
-
-\textbf{Test Plan:}
-Testing was divided into two phases:
-1. \textit{Unit Testing:} Utilizing JUnit 5 to mock the \texttt{VirtualFileSystem} and verify the routing logic of the \texttt{EngineRouter} and the JSON serialization in the \texttt{FrontendGate}.
-2. \textit{Integration Testing:} Generating the standalone \texttt{Deduplicator.jar} via Gradle's Shadow plugin and running it against the provided testing script to validate the \texttt{ServiceLoader} discovery mechanism.
-
-% --- 4. Design Process & Challenges ---
-\section{Design Process and Challenges}
-The most significant architectural challenge was integrating the legacy C library securely into the modern Java ecosystem. 
-Initially, JNI (Java Native Interface) was considered, but we adopted Project Panama (FFM API) using \texttt{jextract}. 
-
-\textbf{Challenge overcome:} The C function \texttt{FDDump} returns a \texttt{char**} (array of strings) with no explicit length, separated by NULL pointers. Reading this safely in Java without causing a JVM segmentation fault required careful manipulation of the \texttt{MemorySegment} API to reinterpret the memory layout size dynamically.
-
-Furthermore, implementing the OpenCV similarity engine required adapting standard \texttt{imread} operations to work strictly with the \texttt{VirtualFileSystem}. We overcame this by reading VFS byte arrays into memory and utilizing \texttt{Imgcodecs.imdecode} to bypass physical disk access.
-
-% --- 5. Limitations and Future Improvements ---
-\section{Limitations and Future Improvements}
-While robust, the current design has a few recognized limitations:
-\begin{itemize}
-    \item \textbf{Native Memory Leaks:} The provided C library lacks an \texttt{FDFree()} function. Consequently, the memory allocated by the native code during \texttt{FDInit()} and \texttt{FDCheck()} cannot be explicitly freed from the Java \texttt{Arena}, potentially leading to memory bloat over prolonged execution periods.
-    \item \textbf{In-Memory Cache Scalability:} The \texttt{VfsIndexCache} groups all files by size in a \texttt{ConcurrentHashMap}. While extremely fast, if the VFS grows to billions of files, this metadata map might exceed JVM heap limits. A future iteration should offload this index to an external key-value store like Redis.
-\end{itemize}
+\appendix
+\section{Test Logs and Annexes}
+\input{sections/annex_logs.tex}
 
 \end{document}

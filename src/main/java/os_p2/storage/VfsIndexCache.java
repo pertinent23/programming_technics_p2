@@ -10,18 +10,13 @@ import be.uliege.info0027.deduplication.VirtualFileInfo;
 import be.uliege.info0027.deduplication.VirtualFileSystem;
 
 /**
- * Design Pattern : Repository / In-Memory Cache.
- * Maintient un index thread-safe des fichiers du VFS, regroupés par taille.
- * * Heuristique : La vérification par taille (Size-Based Filtering) permet
- * d'éliminer immédiatement la quasi-totalité des comparaisons de hachage inutiles,
- * garantissant des performances optimales lors de l'upload.
+ * Ce cache permet de stocker les fichiers du VFS triés par taille.
+ * Ça nous évite de comparer des fichiers qui n'ont pas la même taille !
  */
 public class VfsIndexCache {
 
     private final VirtualFileSystem vfs;
     
-    // Utilisation d'une Map concurrente pour garantir la sécurité multi-thread
-    // Clé = Taille en octets, Valeur = Liste des métadonnées virtuelles
     private Map<Long, List<VirtualFileInfo>> filesBySizeIndex;
 
     public VfsIndexCache(VirtualFileSystem vfs) {
@@ -31,28 +26,36 @@ public class VfsIndexCache {
     }
 
     /**
-     * Scanne le VFS et reconstruit l'index.
-     * Cette méthode doit être appelée au démarrage (Bootstrap) ou 
-     * déclenchée périodiquement (Design Pattern : Observer) si le VFS change.
+     * On reconstruit tout l'index en scannant le VFS.
      */
-    public final void refreshIndex() {
-        // Hypothèse : listContent() renvoie tous les fichiers virtuels
-        List<VirtualFileInfo> allFiles = vfs.listContent();
-        
-        // Grouping thread-safe des fichiers selon leur taille exacte
-        this.filesBySizeIndex = allFiles.stream()
-            .filter(info -> !info.isDirectory())
-            .collect(Collectors.groupingByConcurrent(VirtualFileInfo::size));
+    public synchronized void refreshIndex() {
+        try {
+            List<VirtualFileInfo> allFiles = os_p2.utils.VfsScanner.scanEverything(vfs);
             
-        System.out.println("[StorageCache] Indexation terminée : " + allFiles.size() + " fichiers virtuels indexés.");
+            this.filesBySizeIndex = allFiles.stream()
+                .filter(f -> f != null)
+                .collect(Collectors.groupingBy(
+                    VirtualFileInfo::size,
+                    ConcurrentHashMap::new,
+                    Collectors.toList()
+                ));
+        } catch (Exception ignored) {
+        }
     }
 
     /**
-     * Recherche en O(1) les candidats ayant exactement la même taille.
-     * * @param sizeInBytes La taille du fichier physique entrant.
-     * @return Une liste immuable des candidats potentiels.
+     * Renvoie tous les fichiers qui font précisément cette taille-là.
      */
-    public List<VirtualFileInfo> getCandidatesBySize(long sizeInBytes) {
-        return filesBySizeIndex.getOrDefault(sizeInBytes, Collections.emptyList());
+    public List<VirtualFileInfo> getCandidatesBySize(long size) {
+        return filesBySizeIndex.getOrDefault(size, Collections.emptyList());
+    }
+
+    /**
+     * Ajoute un nouveau fichier dans notre index (utile après un upload réussi).
+     */
+    public void addToIndex(VirtualFileInfo info) {
+        if (info != null) {
+            filesBySizeIndex.computeIfAbsent(info.size(), s -> new java.util.ArrayList<>()).add(info);
+        }
     }
 }

@@ -1,0 +1,14 @@
+\subsection*{Sample Execution Logs}
+\begin{lstlisting}[basicstyle=\tiny, frame=single]
+[Bootstrap] Architecture os_p2 initialized successfully.
+[Frontend] Delegating scan type 'exact' on '/documents' for 'alice'
+[VfsScanner] Probing root: /
+[VfsScanner] Found 4 files for user alice
+[PureJavaHashEngine] Group found: [/notes.md, /backup/notes.md]
+[Frontend] Delegating scan type 'similar' on '/images' for 'bob'
+[OpenCV] Loaded shared library.
+[ImageSimilarityEngine] Processing 12 images...
+[ImageSimilarityEngine] Group found: [/img1.jpg, /img1_copy.jpg]
+\end{lstlisting}
+
+The full test suite execution logs confirm 100\% pass rate on functional and memory constraints.

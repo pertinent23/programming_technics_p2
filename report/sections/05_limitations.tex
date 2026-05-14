@@ -1,0 +1,8 @@
+\section{Limitations and Future Improvements}
+While functional, our solution has some limitations:
+
+\begin{itemize}
+    \item \textbf{Image Scan Complexity}: The current similarity engine uses an $O(N^2)$ comparison approach, which may become slow if a user has thousands of images. Using a feature-hashing or "Perceptual Hash" approach would improve speed.
+    \item \textbf{Native Engine Dependencies}: The \texttt{LegacyNativeEngine} requires the shared library to be compiled for the specific host OS (Linux). A more cross-platform approach would involve bundling multiple library versions.
+    \item \textbf{Index Staleness}: The \texttt{VfsIndexCache} needs manual refreshes. Implementing an observer pattern to update the cache automatically whenever a file is uploaded would be a significant improvement.
+\end{itemize}

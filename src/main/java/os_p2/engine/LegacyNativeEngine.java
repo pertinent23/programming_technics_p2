@@ -16,10 +16,8 @@ import be.uliege.info0027.deduplication.VirtualFileSystem;
 import os_p2.native_c.filededup_h;
 
 /**
- * Design Pattern : Adapter & Strategy.
- * Pont FFM API vers la librairie C optimisée.
- * Si la librairie native n'est pas disponible, l'EngineRouter bascule
- * de manière transparente sur le PureJavaHashEngine (Seamless Swap).
+ * Ce moteur utilise la librairie C native pour aller plus vite.
+ * On utilise l'API FFM (Foreign Function & Memory) pour appeler les fonctions C.
  */
 public class LegacyNativeEngine implements DeduplicationEngine {
 
@@ -28,7 +26,8 @@ public class LegacyNativeEngine implements DeduplicationEngine {
     }
 
     /**
-     * Scanne les fichiers d'un utilisateur sous un chemin donné via le moteur C natif.
+     * On scanne les fichiers d'un utilisateur en passant par le moteur C.
+     * C'est beaucoup plus rapide pour les gros volumes de données.
      */
     @Override
     public Stream<List<String>> scan(VirtualFileSystem vfs, String rootPath, String user) {
@@ -42,13 +41,17 @@ public class LegacyNativeEngine implements DeduplicationEngine {
 
             Map<String, List<String>> physToVirt = new HashMap<>();
 
-            // Réutilise la méthode partagée
-            List<VirtualFileInfo> files = PureJavaHashEngine.getFilesForUser(vfs, rootPath, user);
+            List<be.uliege.info0027.deduplication.VirtualFileInfo> files = 
+                os_p2.utils.VfsScanner.scanForUser(vfs, rootPath, user);
 
             for (VirtualFileInfo info : files) {
-                if (Boolean.TRUE.equals(info.isDirectory())) continue;
-                if (info.physicalPath() == null) continue;
-                physToVirt.computeIfAbsent(info.physicalPath(), _ -> new ArrayList<>()).add(info.virtualPath());
+                if (Boolean.TRUE.equals(info.isDirectory())) {
+                    continue;
+                }
+                if (info.physicalPath() == null) {
+                    continue;
+                }
+                physToVirt.computeIfAbsent(info.physicalPath(), p -> new ArrayList<>()).add(info.virtualPath());
                 MemorySegment cString = arena.allocateFrom(info.physicalPath());
                 filededup_h.FDCheck(fdState, cString);
             }
@@ -76,7 +79,9 @@ public class LegacyNativeEngine implements DeduplicationEngine {
                     List<String> virts = physToVirt.get(phys);
                     if (virts != null) {
                         for (String v : virts) {
-                            if (!currentGroup.contains(v)) currentGroup.add(v);
+                            if (!currentGroup.contains(v)) {
+                                currentGroup.add(v);
+                            }
                         }
                     }
                 }
@@ -90,21 +95,29 @@ public class LegacyNativeEngine implements DeduplicationEngine {
     }
 
     /**
-     * Vérifie si un fichier physique entrant est un doublon via le moteur C natif.
+     * Vérifie si un fichier physique est déjà connu du moteur C.
      */
     @Override
     public String checkDuplicate(VirtualFileSystem vfs, String incomingPath) {
         try (Arena arena = Arena.ofConfined()) {
             MemorySegment fdState = filededup_h.FDInit();
-            if (fdState.equals(MemorySegment.NULL)) return null;
+            if (fdState.equals(MemorySegment.NULL)) {
+                return null;
+            }
 
-            if (!Files.isRegularFile(Path.of(incomingPath))) return null;
+            if (!Files.isRegularFile(Path.of(incomingPath))) {
+                return null;
+            }
 
             Map<String, String> physToVirt = new HashMap<>();
 
             for (VirtualFileInfo info : vfs.listContent()) {
-                if (Boolean.TRUE.equals(info.isDirectory())) continue;
-                if (info.physicalPath() == null) continue;
+                if (Boolean.TRUE.equals(info.isDirectory())) {
+                    continue;
+                }
+                if (info.physicalPath() == null) {
+                    continue;
+                }
                 physToVirt.put(info.physicalPath(), info.virtualPath());
                 MemorySegment cString = arena.allocateFrom(info.physicalPath());
                 filededup_h.FDCheck(fdState, cString);
@@ -117,7 +130,9 @@ public class LegacyNativeEngine implements DeduplicationEngine {
             MemorySegment dumpPtr = filededup_h.FDDump(fdState, lengthPtr);
             int length = lengthPtr.get(ValueLayout.JAVA_INT, 0);
 
-            if (length == 0 || dumpPtr.equals(MemorySegment.NULL)) return null;
+            if (length == 0 || dumpPtr.equals(MemorySegment.NULL)) {
+                return null;
+            }
 
             MemorySegment sizedDump = dumpPtr.reinterpret((long) length * ValueLayout.ADDRESS.byteSize());
             List<String> currentGroup = new ArrayList<>();
